@@ -18,6 +18,7 @@ const MobileLayout : React.FC<Props> = ({ children}) => {
       direction='column'
       position='relative'
     >
+      <Navbar />
       <Flex
         flex={1}
         direction='column'
@@ -25,7 +26,6 @@ const MobileLayout : React.FC<Props> = ({ children}) => {
       >
         {children}
       </Flex>
-      <Navbar />
     </Flex>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 
 import {
-    Icon,
-    VStack,
-    Text
+    Image,
+    Text,
+    VStack
 } from '@chakra-ui/react'
 
 import { Route } from './routes'
@@ -22,15 +22,9 @@ const NavItem : React.FC<Props> = ({ route, active }) => {
         <VStack
             spacing={0}
         >
-            <Icon 
-                as={route.icon}
-                color={active ? 'blue.500' : 'gray.500'}
-                w={6}
-                h={6}
-            />
             <Text
-                fontSize='sm'
-                color={active ? 'blue.500' : 'gray.500'}
+                fontSize='md'
+                color='black'
             >
                 {route.title}
             </Text>

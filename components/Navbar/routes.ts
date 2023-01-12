@@ -6,34 +6,24 @@ import { BsPiggyBankFill } from "react-icons/bs";
 export interface Route {
     path: string;
     title: string;
-    icon: IconType;
 }
 
 const routes : Route[]  = [
     {
-        path: "/",
-        title: "Home",
-        icon: FaHome
+        path: "/buy",
+        title: "BUY",
     },
     {
-        path: "/learn",
-        title: "Learn",
-        icon: FaCalculator
+        path: "/sell",
+        title: "SELL",
     },
     {
-        path: "/work",
-        title: "Work",
-        icon: FaRegHandshake
+        path: "/login",
+        title: "LOGIN",
     },
     {
-        path: "/save",
-        title: "Save",
-        icon: BsPiggyBankFill
-    },
-    {
-        path: "/profile",
-        title: "Profile",
-        icon: FaUser
+        path: "/signup",
+        title: "SIGNUP",
     }
 ]
 

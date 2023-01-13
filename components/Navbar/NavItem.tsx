@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+    Button,
     Image,
     Text,
     VStack
@@ -14,24 +15,26 @@ interface Props {
     active: boolean
 }
 
-const NavItem : React.FC<Props> = ({ route, active }) => {
-  return (
-    <Link
-        href={route.path}
-    >
-        <VStack
-            spacing={0}
+const NavItem: React.FC<Props> = ({ route, active }) => {
+    return (
+        <Button
+            colorScheme='blackAlpha'
+            variant='unstyled'
         >
-            <Text
-                fontSize='md'
-                color='black'
+            <Link
+                href={route.path}
             >
-                {route.title}
-            </Text>
-        </VStack>
-    </Link>
-    
-  )
+                <Text
+                    fontSize='md'
+                    color='black'
+                >
+                    {route.title}
+                </Text>
+
+            </Link>
+        </Button>
+
+    )
 }
 
 export default NavItem

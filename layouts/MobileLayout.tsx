@@ -17,6 +17,7 @@ const MobileLayout : React.FC<Props> = ({ children}) => {
       minH='100vh'
       direction='column'
       position='relative'
+      alignItems='center'
     >
       <Navbar />
       <Flex

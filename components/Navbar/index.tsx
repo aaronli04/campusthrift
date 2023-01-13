@@ -32,10 +32,11 @@ const Navbar: React.FC = () => {
 
     return (
         <HStack
-            top={30}
+            top={10}
             position='relative'
-            alignItems='center'
+            alignItems='space-between'
             gap={15}
+            width='90%'
         >
             <Link
                 href='/'
@@ -44,27 +45,29 @@ const Navbar: React.FC = () => {
                     colorScheme='brand'
                 >
                     <Image
-                        height={100}
-                        width={100}
+                        height={150}
+                        width={150}
                         src="/logo.png"
                         alt='campusthrift logo'
                     />
                 </Button>
             </Link>
             <HStack
-                width='30%'
+                width='45%'
                 spacing={0}
+                border='1px solid black'
             >
-                <Input placeholder='Search' />
+                <Input placeholder='Search' border='hidden' focusBorderColor='transparent'/>
                 <IconButton
+                    variant='ghost'
+                    bg='white'
                     aria-label='Search database'
                     icon={<SearchIcon />}
                 />
             </HStack>
             <Flex
-                width='50%'
-                justifyContent='space-between'
                 bg='white'
+                gap={20}
             >
                 {
                     routes.map((route, index) => (

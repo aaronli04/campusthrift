@@ -14,6 +14,7 @@ const PageContainer : React.FC<Props> = ({ children, bg }) => {
       flexDirection='column'
       bg={bg}
       py={4}
+      maxW='100%'
     >
       {children}
     </Container>

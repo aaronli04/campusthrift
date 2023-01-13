@@ -16,7 +16,7 @@ const Header: React.FC = () => {
         fontWeight='semi'
       >
         Buy good-as-new items for a whole lot less.
-        Sell things you don't want anymore.
+        Sell things you don&apos;t want anymore.
         No fees.
       </Text>
       <br />

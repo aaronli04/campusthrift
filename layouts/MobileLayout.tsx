@@ -18,6 +18,7 @@ const MobileLayout : React.FC<Props> = ({ children}) => {
       direction='column'
       position='relative'
       alignItems='center'
+      gap={100}
     >
       <Navbar />
       <Flex

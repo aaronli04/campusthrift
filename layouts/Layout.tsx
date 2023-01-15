@@ -1,6 +1,14 @@
 import React from 'react'
 
-import MobileLayout from './MobileLayout'
+import {
+  Flex
+} from '@chakra-ui/react'
+
+import Navbar, { navbarHeight } from '../components/Navbar'
+
+interface Props {
+    children: React.ReactNode
+}
 
 interface Props {
     children: React.ReactNode
@@ -8,9 +16,22 @@ interface Props {
 
 const Layout : React.FC<Props> = ({ children }) => {
   return (
-    <MobileLayout>
+    <Flex
+      minH='100vh'
+      direction='column'
+      position='relative'
+      alignItems='center'
+      gap={100}
+    >
+      <Navbar />
+      <Flex
+        flex={1}
+        direction='column'
+        pb={`${navbarHeight + 2}rem`}
+      >
         {children}
-    </MobileLayout>
+      </Flex>
+    </Flex>
   )
 }
 

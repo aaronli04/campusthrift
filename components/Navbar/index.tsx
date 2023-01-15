@@ -60,7 +60,6 @@ const Navbar: React.FC = () => {
                 <Input placeholder='Search' border='hidden' focusBorderColor='transparent'/>
                 <IconButton
                     variant='ghost'
-                    bg='white'
                     aria-label='Search database'
                     icon={<SearchIcon />}
                 />

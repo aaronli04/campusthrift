@@ -1,7 +1,9 @@
 export interface Item {
     title: string;
     seller: string;
+    listingID: string;
     condition: string;
+    description: string;
     tags: string[];
     size: string;
     quantityLeft: string;
@@ -12,4 +14,5 @@ export interface Item {
     datePosted: string;
     dateSold: string;
     imageURL: string;
+    imageURLList: string[];
 }

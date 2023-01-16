@@ -21,6 +21,7 @@ const currentListings: Item[] = [
         imageURL: 'https://via.placeholder.com/200',
         imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
         listingID: '123456',
+        views: 0,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius odio ut nibh accumsan, ac cursus dui consectetur. Proin ut posuere lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ac vulputate ex. Duis suscipit ante non nunc iaculis, ut faucibus dolor varius. Fusce in risus erat.'
     },
     {
@@ -39,6 +40,7 @@ const currentListings: Item[] = [
         imageURL: 'https://via.placeholder.com/200',
         imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
         listingID: '123457',
+        views: 1,
         description: 'Really nice shoes, airy, and comfortable'
     },
     {
@@ -57,7 +59,8 @@ const currentListings: Item[] = [
         imageURL: 'https://via.placeholder.com/200',
         imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
         listingID: '123458',
-        description: 'Really nice shoes, airy, and comfortable'
+        description: 'Really nice shoes, airy, and comfortable',
+        views: 15
     },
     {
         title: 'Yeezy Boost 350 V2',
@@ -75,7 +78,8 @@ const currentListings: Item[] = [
         imageURL: 'https://via.placeholder.com/200',
         imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
         listingID: '123459',
-        description: 'Really nice shoes, airy, and comfortable'
+        description: 'Really nice shoes, airy, and comfortable',
+        views: 100
     },
     {
         title: 'Yeezy Boost 350 V2',
@@ -93,7 +97,8 @@ const currentListings: Item[] = [
         imageURL: 'https://via.placeholder.com/200',
         imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
         listingID: '123460',
-        description: 'Really nice shoes, airy, and comfortable'
+        description: 'Really nice shoes, airy, and comfortable',
+        views: 73
     },
     
 ]

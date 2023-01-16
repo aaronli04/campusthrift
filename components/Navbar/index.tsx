@@ -11,13 +11,16 @@ import {
     Text,
     HStack,
     Input,
-    IconButton
+    IconButton,
+    ButtonGroup
 } from '@chakra-ui/react'
 
 import NavItem from './NavItem';
 
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@chakra-ui/icons';
+import LoginModal from './Modals/LoginModal';
+import SignUpModal from './Modals/SignUpModal';
 
 
 export const navbarHeight = 4;
@@ -57,7 +60,7 @@ const Navbar: React.FC = () => {
                 spacing={0}
                 border='1px solid black'
             >
-                <Input placeholder='Search' border='hidden' focusBorderColor='transparent'/>
+                <Input placeholder='Search' border='hidden' focusBorderColor='transparent' />
                 <IconButton
                     variant='ghost'
                     aria-label='Search database'
@@ -77,6 +80,10 @@ const Navbar: React.FC = () => {
                         />
                     ))
                 }
+                <ButtonGroup gap={20}>
+                    <LoginModal />
+                    <SignUpModal />
+                </ButtonGroup>
             </Flex>
         </HStack>
     )

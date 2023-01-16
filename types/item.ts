@@ -15,4 +15,5 @@ export interface Item {
     dateSold: string;
     imageURL: string;
     imageURLList: string[];
+    views: number;
 }

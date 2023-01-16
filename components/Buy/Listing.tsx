@@ -93,9 +93,7 @@ const Listing: React.FC<Props> = ({ listing }) => {
                         </VStack>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
+                        <Button colorScheme='blue'>Offer</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
@@ -109,11 +107,6 @@ const Listing: React.FC<Props> = ({ listing }) => {
                     fontWeight='bold'
                 >
                     {listing.title}
-                </Text>
-                <Text
-                    fontSize='sm'
-                >
-                    {listing.tags}
                 </Text>
                 <HStack
                     pt={2}

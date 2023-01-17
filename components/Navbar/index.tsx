@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { SearchIcon } from '@chakra-ui/icons';
 import LoginModal from './Modals/LoginModal';
 import SignUpModal from './Modals/SignUpModal';
+import Searchbar from '../Search/Searchbar';
 
 
 export const navbarHeight = 4;
@@ -55,18 +56,7 @@ const Navbar: React.FC = () => {
                     />
                 </Button>
             </Link>
-            <HStack
-                width='45%'
-                spacing={0}
-                border='1px solid black'
-            >
-                <Input placeholder='Search' border='hidden' focusBorderColor='transparent' />
-                <IconButton
-                    variant='ghost'
-                    aria-label='Search database'
-                    icon={<SearchIcon />}
-                />
-            </HStack>
+            <Searchbar />
             <Flex
                 bg='white'
                 gap={20}

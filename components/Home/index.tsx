@@ -8,7 +8,6 @@ const Home = () => {
   return (
     <Flex direction="column" w="100%" gap={12} flex={1} justifyContent="center">
       <Header />
-
     </Flex>
   );
 };

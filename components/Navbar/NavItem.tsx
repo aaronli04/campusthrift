@@ -33,7 +33,6 @@ const NavItem: React.FC<Props> = ({ route, active }) => {
 
             </Link>
         </Button>
-
     )
 }
 

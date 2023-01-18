@@ -4,7 +4,7 @@ export interface Item {
     listingID: string;
     condition: string;
     description: string;
-    tags: string[];
+    category: string;
     size: string;
     quantityLeft: string;
     price: string;

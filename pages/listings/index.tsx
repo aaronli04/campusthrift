@@ -1,122 +1,30 @@
-import React from 'react'
+import { GetStaticProps } from "next";
+import React from "react";
 import { Link, SimpleGrid, Text } from '@chakra-ui/react'
-import { Item } from '../../types/item'
-import Listing from '../../components/Buy/Listing'
-import Listings from '../../components/Buy/Listings'
+import { Item } from "../../types/item";
+import currentListings from "../../data";
 
-const currentListings: Item[] = [
-    {
-        title: 'Yeezy Boost 350 V2',
-        seller: 'Aaron',
-        condition: 'Gently worn',
-        tags: ['Shoe', 'Yeezy'],
-        size: '9.5',
-        quantityLeft: '6',
-        price: '$350',
-        delivery: 'none',
-        returns: 'no returns',
-        type: 'shoe',
-        datePosted: 'Jan. 14th',
-        dateSold: 'n/a',
-        imageURL: 'https://via.placeholder.com/200',
-        imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
-        listingID: '123456',
-        views: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius odio ut nibh accumsan, ac cursus dui consectetur. Proin ut posuere lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ac vulputate ex. Duis suscipit ante non nunc iaculis, ut faucibus dolor varius. Fusce in risus erat.'
-    },
-    {
-        title: 'Nike Air Max',
-        seller: 'Aaron',
-        condition: 'Gently worn',
-        tags: ['Hypebeast'],
-        size: '9.5',
-        quantityLeft: '6',
-        price: '$350',
-        delivery: 'none',
-        returns: 'no returns',
-        type: 'shoe',
-        datePosted: 'Jan. 14th',
-        dateSold: 'n/a',
-        imageURL: 'https://via.placeholder.com/200',
-        imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
-        listingID: '123457',
-        views: 1,
-        description: 'Really nice shoes, airy, and comfortable'
-    },
-    {
-        title: 'Textbook',
-        seller: 'Aaron',
-        condition: 'Gently worn',
-        tags: ['Hypebeast'],
-        size: '9.5',
-        quantityLeft: '6',
-        price: '$350',
-        delivery: 'none',
-        returns: 'no returns',
-        type: 'shoe',
-        datePosted: 'Jan. 14th',
-        dateSold: 'n/a',
-        imageURL: 'https://via.placeholder.com/200',
-        imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
-        listingID: '123458',
-        description: 'Really nice shoes, airy, and comfortable',
-        views: 15
-    },
-    {
-        title: 'Laptop',
-        seller: 'Aaron',
-        condition: 'Gently worn',
-        tags: ['Hypebeast'],
-        size: '9.5',
-        quantityLeft: '6',
-        price: '$350',
-        delivery: 'none',
-        returns: 'no returns',
-        type: 'shoe',
-        datePosted: 'Jan. 14th',
-        dateSold: 'n/a',
-        imageURL: 'https://via.placeholder.com/200',
-        imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
-        listingID: '123459',
-        description: 'Really nice shoes, airy, and comfortable',
-        views: 100
-    },
-    {
-        title: 'Yeezy Boost 350 V2',
-        seller: 'Aaron',
-        condition: 'Gently worn',
-        tags: ['Hypebeast'],
-        size: '9.5',
-        quantityLeft: '6',
-        price: '$350',
-        delivery: 'none',
-        returns: 'no returns',
-        type: 'shoe',
-        datePosted: 'Jan. 14th',
-        dateSold: 'n/a',
-        imageURL: 'https://via.placeholder.com/200',
-        imageURLList: ['https://via.placeholder.com/200', 'https://via.placeholder.com/175'],
-        listingID: '123460',
-        description: 'Really nice shoes, airy, and comfortable',
-        views: 73
-    },
-
-]
-
-const index = () => {
-    return (
-        <div>
-            <SimpleGrid columns={4} spacing={5}>
-                {
-                    currentListings.map((listing, index) => (
-                        <Link href={'/listings/' + listing.listingID} key={index}>
-                            {listing.title}
-                        </Link>
-                    ))
-                }
-            </SimpleGrid>
-        </div>
-    )
+type Props = {
+    listings: Item[]
 }
 
-export default index
+const listings = ({ listings }: Props) => {
+    return (
+        <SimpleGrid columns={4} spacing={5}>
+            {
+                listings.map((listing, index) => (
+                    <Link key={index} href={`/listings/${listing.listingID}`}>
+                        {listing.title}
+                    </Link>
+                ))
+            }
+        </SimpleGrid>
+    );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    const listings: Item[] = currentListings;
+    return { props: { listings } }
+}
+
+export default listings;

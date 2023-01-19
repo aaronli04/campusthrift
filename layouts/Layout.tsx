@@ -21,7 +21,7 @@ const Layout : React.FC<Props> = ({ children }) => {
       direction='column'
       position='relative'
       alignItems='center'
-      gap={100}
+      gap={75}
     >
       <Navbar />
       <Flex

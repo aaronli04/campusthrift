@@ -17,7 +17,8 @@ import {
     ModalFooter,
     IconButton,
     ButtonGroup,
-    Box
+    Box,
+    Link
 } from '@chakra-ui/react';
 
 import { Item } from '../../types/item';
@@ -44,59 +45,15 @@ const Listing: React.FC<Props> = ({ listing }) => {
         <Card
             p={0}
         >
-            <Button h={200} w={200} padding={0} onClick={onOpen}>
+            <Link href={`/listings/${listing.listingID}`}>
                 <Image
-                    src={listing.imageURL}
-                    roundedTop='md'
-                    alt={listing.title}
-                    w='100%'
-                    borderWidth={0}
+                        src={listing.imageURL}
+                        roundedTop='md'
+                        alt={listing.title}
+                        w='100%'
+                        borderWidth={0}
                 />
-            </Button>
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>{listing.title}</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody w='100%'>
-                        <Image
-                            src={listing.imageURLList[currentImageIndex]}
-                            roundedTop='md'
-                            alt={listing.title}
-                            w='100%'
-                            h='100%'
-                            borderWidth={0}
-                        />
-                        <VStack>
-                            <ButtonGroup spacing={0}>
-                                <IconButton aria-label='Back image' icon={<ChevronLeftIcon />} w={200} onClick={handleImageLeft} />
-                                <IconButton aria-label='Next image' icon={<ChevronRightIcon />} w={200} onClick={handleImageRight} />
-                            </ButtonGroup>
-                            <Box w='100%' justifyContent='flex-start'>
-                                <HStack spacing={0.5}>
-                                    <Text fontWeight='semibold'>Size:</Text>
-                                    <Text>{listing.size}</Text>
-                                </HStack>
-                                <HStack spacing={0.5}>
-                                    <Text fontWeight='semibold'>Condition:</Text>
-                                    <Text>{listing.condition}</Text>
-                                </HStack>
-                                <HStack spacing={0.5}>
-                                    <Text fontWeight='semibold'>Price:</Text>
-                                    <Text>{listing.price}</Text>
-                                </HStack>
-                                <Box mt={5}>
-                                    <Text fontWeight='semibold'>Description</Text>
-                                    <Text>{listing.description}</Text>
-                                </Box>
-                            </Box>
-                        </VStack>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme='blue'>Offer</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+            </Link>
             <VStack
                 alignItems='flex-start'
                 spacing={0}

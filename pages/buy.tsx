@@ -3,11 +3,17 @@ import React from 'react'
 import { NextPage } from 'next'
 import PageContainer from '../components/utility/PageContainer'
 import Buy from '../components/Buy/index'
+import Head from 'next/head'
 
-const BuyPage : NextPage = () => {
+const BuyPage: NextPage = () => {
   return (
     <PageContainer>
-        <Buy />
+      <Head>
+        <title>
+          Campus Thrift
+        </title>
+      </Head>
+      <Buy />
     </PageContainer>
   )
 }

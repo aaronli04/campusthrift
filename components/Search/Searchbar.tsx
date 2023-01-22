@@ -118,13 +118,21 @@ const Searchbar = () => {
         ))
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            setListings(listings.filter(
+                listings => listings.title.toLowerCase().includes(searchText.toLowerCase())
+            ))    
+        }
+    }
+
     return (
         <HStack
                 width='45%'
                 spacing={0}
                 border='1px solid black'
             >
-                <Input placeholder='Search' border='hidden' focusBorderColor='transparent' onChange={handleSearchTextChange} />
+                <Input placeholder='Search' border='hidden' focusBorderColor='transparent' onChange={handleSearchTextChange} onKeyDown={handleKeyDown}/>
                 <IconButton
                     variant='ghost'
                     aria-label='Search database'

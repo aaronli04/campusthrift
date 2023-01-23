@@ -45,10 +45,9 @@ import { useRouter } from "next/router";
 
 const SearchResults = () => {
     const [pageURL, setPageURL] = useState<string>("")
-    const [searchIndex, setSearchIndex] = useState<number>(0)
     React.useEffect(() => {
       const searchIndex = location.href.search('/search/') + 8
-      setPageURL(location.href.substring(searchIndex))
+      setPageURL(location.href.substring(searchIndex).replaceAll("%20",""))
     }, [])
 
     return (
@@ -60,7 +59,7 @@ const SearchResults = () => {
             </Head>
             <SimpleGrid columns={4} spacing={5}>
                     {
-                        currentListings.filter(listing => listing.title.toLowerCase().includes(pageURL.toLowerCase())).map((listing, index) => (
+                        currentListings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())).map((listing, index) => (
                             <Listing
                                 key={index}
                                 listing={listing}

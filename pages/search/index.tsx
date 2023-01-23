@@ -7,7 +7,6 @@ import PageContainer from "../../components/utility/PageContainer";
 import Head from "next/head";
 import Listing from "../../components/Buy/Listing";
 import { SearchIcon } from "@chakra-ui/icons";
-import SearchResults from "./SearchResults"
 
 type Props = {
     searchText: string
@@ -21,7 +20,6 @@ const Search = ({ searchText }: Props) => {
                     Campus Thrift | Search
                 </title>
             </Head>
-            <SearchResults searchText=""/>
         </PageContainer>
     );
 }

@@ -30,7 +30,7 @@ const SearchResults = ({ item }: InferGetStaticPropsType<typeof getStaticProps>)
             <PageContainer>
                 <Head>
                     <title>
-                        Campus Thrift | {item.title}
+                        Campus Thrift | Results
                     </title>
                 </Head>
                 <SimpleGrid columns={4} spacing={5}>

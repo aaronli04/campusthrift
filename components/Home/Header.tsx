@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Box, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
 

@@ -1,25 +1,21 @@
 import { SearchIcon } from '@chakra-ui/icons'
 import { HStack, IconButton, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
-import currentListings from '../../data'
-import { Item } from '../../types/item'
-import Listing from '../Buy/Listing'
 
 const Searchbar = () => {
     const [searchText, setSearchText] = React.useState<string>('')
-    const [listings, setListings] = React.useState<Item[]>(currentListings)
 
     const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value)
     }
 
     const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        location.href=`/search/${searchText.toLowerCase()}`
+        location.href=`/search/${searchText}`
     }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
-            location.href=`/search/${searchText.toLowerCase()}`
+            location.href=`/search/${searchText}`
         }
     }
 

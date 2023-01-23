@@ -6,23 +6,10 @@ import {
     VStack,
     Text,
     Card,
-    Button,
-    useDisclosure,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalBody,
-    ModalFooter,
-    IconButton,
-    ButtonGroup,
-    Box,
     Link
 } from '@chakra-ui/react';
 
 import { Item } from '../../types/item';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 
 interface Props {
@@ -30,9 +17,7 @@ interface Props {
 }
 
 const Listing: React.FC<Props> = ({ listing }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const [currentImageIndex, setCurrentImageIndex] = React.useState<number>(0);
-
 
     const handleImageLeft = (e: React.MouseEvent<HTMLButtonElement>) => {
         currentImageIndex === 0 ? setCurrentImageIndex(listing.imageURLList.length - 1) : setCurrentImageIndex(currentImageIndex - 1)

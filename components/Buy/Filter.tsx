@@ -45,7 +45,7 @@ const Filter: React.FC = () => {
                         </h2>
                         <AccordionPanel pb={4}>
                             <VStack gap={2}>
-                                <Link href='/'>
+                                <Link href='/categories/MathTextbooks'>
                                     Math
                                 </Link>
                                 <Link href='/'>

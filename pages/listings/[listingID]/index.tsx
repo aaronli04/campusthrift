@@ -1,7 +1,25 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import React, { useState } from 'react'
-import { HStack, SimpleGrid, Text, VStack, Image, ButtonGroup, IconButton, Box, Button, Icon, Flex, Card, CardHeader, Heading, CardBody, StackDivider, Stack, CardFooter } from '@chakra-ui/react'
-import currentListings from "../../../data";
+import {
+    GetStaticPaths,
+    GetStaticProps,
+    InferGetStaticPropsType
+} from "next";
+import React from 'react'
+import {
+    HStack,
+    Text,
+    VStack,
+    Image,
+    Box,
+    Button,
+    Card,
+    CardHeader,
+    Heading,
+    CardBody,
+    StackDivider,
+    Stack,
+    CardFooter
+} from '@chakra-ui/react'
+import currentListings from "../../../components/utility/itemData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
@@ -39,7 +57,7 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <PageContainer>
             <Head>
                 <title>
-                    Campus Thrift | {item.title}
+                    Campus Thrift | Buy
                 </title>
             </Head>
             <VStack left={30}>

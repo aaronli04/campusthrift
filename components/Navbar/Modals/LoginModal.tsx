@@ -13,7 +13,6 @@ import {
     ModalFooter,
     HStack
 } from '@chakra-ui/react'
-import SignUpModal from './SignUpModal';
 
 const LoginModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()

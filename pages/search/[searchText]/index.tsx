@@ -1,11 +1,12 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import React, { useEffect, useRef, useState } from 'react'
-import { HStack, SimpleGrid, Text, VStack, Image, ButtonGroup, IconButton, Box, Button, Icon, Flex, Card, CardHeader, Heading, CardBody, StackDivider, Stack, CardFooter } from '@chakra-ui/react'
-import currentListings from "../../../data";
+import React, { useState } from 'react'
+import {
+    SimpleGrid,
+    Text
+} from '@chakra-ui/react'
+import currentListings from "../../../components/utility/itemData";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Listing from "../../../components/Buy/Listing";
-import { useRouter } from "next/router";
 import { Item } from "../../../types/item";
 
 const SearchResults = () => {
@@ -39,12 +40,12 @@ const SearchResults = () => {
                         ))
                     }
                 </SimpleGrid>
-    
+
             </PageContainer>
         );
     }
-    
-    else {
+
+    else if (listings.length === 0 && pageURL.length != 0) {
         return (
             <PageContainer>
                 <Text fontSize="2xl">

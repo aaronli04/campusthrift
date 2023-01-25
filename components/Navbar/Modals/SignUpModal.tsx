@@ -11,8 +11,7 @@ import {
     useDisclosure,
     Text,
     ModalFooter,
-    HStack,
-    Link
+    HStack
 } from '@chakra-ui/react'
 
 const SignUpModal = () => {

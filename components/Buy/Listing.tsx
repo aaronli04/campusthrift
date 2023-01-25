@@ -17,25 +17,18 @@ interface Props {
 }
 
 const Listing: React.FC<Props> = ({ listing }) => {
-    const [currentImageIndex, setCurrentImageIndex] = React.useState<number>(0);
-
-    const handleImageLeft = (e: React.MouseEvent<HTMLButtonElement>) => {
-        currentImageIndex === 0 ? setCurrentImageIndex(listing.imageURLList.length - 1) : setCurrentImageIndex(currentImageIndex - 1)
-    }
-    const handleImageRight = (e: React.MouseEvent<HTMLButtonElement>) => {
-        listing.imageURLList.length - 1 > currentImageIndex ? setCurrentImageIndex(currentImageIndex + 1) : setCurrentImageIndex(0)
-    }
-
     return (
         <Card
             p={0}
         >
             <Link href={`/listings/${listing.listingID}`}>
                 <Image
-                        src={listing.imageURL}
+                        src={listing.imageURLList[0]}
                         roundedTop='md'
                         alt={listing.title}
                         w='100%'
+                        minH={200}
+                        minW={200}
                         borderWidth={0}
                 />
             </Link>

@@ -1,16 +1,16 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import React, { useState } from 'react'
-import { HStack, SimpleGrid, Text, VStack, Image, ButtonGroup, IconButton, Box, Button, Icon, Flex, Card, CardHeader, Heading, CardBody, StackDivider, Stack, CardFooter } from '@chakra-ui/react'
-import currentListings from "../../../data";
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import React from 'react'
+import { SimpleGrid } from '@chakra-ui/react'
+import currentListings from "../../../components/utility/itemData";
+import categories from "../../../components/utility/categoryData";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Listing from "../../../components/Buy/Listing";
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = currentListings.map((listing) => ({
-        params: { categoryName: listing.category }
+    const paths = categories.map((category) => ({
+        params: { categoryName: category }
     }))
     return { paths, fallback: false }
 }

@@ -10,10 +10,8 @@ export interface Item {
     price: string;
     delivery: string;
     returns: string;
-    type: string;
     datePosted: string;
     dateSold: string;
-    imageURL: string;
     imageURLList: string[];
     views: number;
 }

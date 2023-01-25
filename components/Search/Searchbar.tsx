@@ -1,5 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import { HStack, IconButton, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { HStack, IconButton, Input } from '@chakra-ui/react'
 import React from 'react'
 
 const Searchbar = () => {

@@ -2,9 +2,7 @@ import React from 'react'
 
 import {
     Button,
-    Image,
-    Text,
-    VStack
+    Text
 } from '@chakra-ui/react'
 
 import { Route } from './routes'

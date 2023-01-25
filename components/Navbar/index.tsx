@@ -4,14 +4,10 @@ import routes from './routes'
 
 import {
     Button,
-    Card,
     Flex,
     Link,
     Image,
-    Text,
     HStack,
-    Input,
-    IconButton,
     ButtonGroup
 } from '@chakra-ui/react'
 

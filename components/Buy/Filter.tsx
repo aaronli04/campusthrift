@@ -24,11 +24,20 @@ const Filter: React.FC = () => {
                         </h2>
                         <AccordionPanel pb={4}>
                             <VStack gap={2}>
-                                <Link href='/'>
+                                <Link href='/categories/Refrigerators'>
                                     Refrigerators
                                 </Link>
-                                <Link href='/'>
+                                <Link href='/categories/Microwaves'>
                                     Microwaves
+                                </Link>
+                                <Link href='/categories/Lamps'>
+                                    Lamps
+                                </Link>
+                                <Link href='/categories/Fans'>
+                                    Fans
+                                </Link>
+                                <Link href='/categories/Monitors AndTelevision'>
+                                    Monitors and Television
                                 </Link>
                             </VStack>
                         </AccordionPanel>
@@ -45,10 +54,10 @@ const Filter: React.FC = () => {
                         </h2>
                         <AccordionPanel pb={4}>
                             <VStack gap={2}>
-                                <Link href='/categories/MathTextbooks'>
+                                <Link href='/categories/Math Textbooks'>
                                     Math
                                 </Link>
-                                <Link href='/'>
+                                <Link href='/categories/Science Textbooks'>
                                     Science
                                 </Link>
                             </VStack>

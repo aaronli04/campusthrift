@@ -1,11 +1,11 @@
 import React from 'react'
-import { Flex } from '@chakra-ui/react'
+import { Flex, HStack, VStack } from '@chakra-ui/react'
 import Listings from './Listings'
 import Filter from './Filter'
 
-const Buy : React.FC = () => {
+const Buy: React.FC = () => {
   return (
-    <Flex direction="row" w="100%" gap={12} flex={1} justifyContent="center">
+    <Flex direction="row" w="100%" gap={12} flex={1}>
       <Filter />
       <Listings />
     </Flex>

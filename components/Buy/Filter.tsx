@@ -1,10 +1,21 @@
 import React from "react";
+import currentListings from "../utility/itemData";
 
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, HStack, Image, Link, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+    Accordion,
+    AccordionButton,
+    AccordionIcon, 
+    AccordionItem, 
+    AccordionPanel, 
+    Box,
+    Link,
+    Text, 
+    VStack
+} from "@chakra-ui/react";
 
 const Filter: React.FC = () => {
     return (
-        <VStack>
+        <VStack h='100%'>
             <Text
                 fontWeight='semibold'
                 fontSize='xl'
@@ -36,7 +47,7 @@ const Filter: React.FC = () => {
                                 <Link href='/categories/Fans'>
                                     Fans
                                 </Link>
-                                <Link href='/categories/Monitors AndTelevision'>
+                                <Link href='/categories/Monitors and Television'>
                                     Monitors and Television
                                 </Link>
                             </VStack>

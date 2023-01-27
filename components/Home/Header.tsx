@@ -19,10 +19,6 @@ const Header: React.FC = () => {
         Sell things you don&apos;t use anymore.
         No fees.
       </Text>
-      <br />
-      <Text>
-        Coming soon: Trending Section
-      </Text>
     </VStack>
   );
 };

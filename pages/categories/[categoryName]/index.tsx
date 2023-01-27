@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import React from 'react'
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, Text } from '@chakra-ui/react'
 import currentListings from "../../../components/utility/itemData";
 import categories from "../../../components/utility/categoryData";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Listing from "../../../components/Buy/Listing";
+import { Item } from "../../../types/item";
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -21,14 +22,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const Listings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProps>) => {
-    return (
-        <PageContainer>
-            <Head>
-                <title>
-                    Campus Thrift | Results
-                </title>
-            </Head>
-            <SimpleGrid columns={4} spacing={5}>
+    const [listings, setListings] = React.useState<Item[]>(currentListings)
+
+    React.useEffect(() => {
+        setListings(currentListings.filter(listing => listing.category.includes(categoryName)))
+    }, [categoryName])
+
+    if (listings.length != 0) {
+        return (
+            <PageContainer>
+                <Head>
+                    <title>
+                        Campus Thrift | Results
+                    </title>
+                </Head>
+                <SimpleGrid columns={4} spacing={5}>
                     {
                         currentListings.filter(listing => listing.category.includes(categoryName)).map((listing, index) => (
                             <Listing
@@ -38,8 +46,24 @@ const Listings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProp
                         ))
                     }
                 </SimpleGrid>
-        </PageContainer>
-    );
+            </PageContainer>
+        );
+    }
+
+    else {
+        return (
+            <PageContainer>
+                <Head>
+                    <title>
+                        Campus Thrift | Results
+                    </title>
+                </Head>
+                <Text fontSize="2xl">
+                    There are no listings in this category
+                </Text>
+            </PageContainer>
+        )
+    }
 }
 
 export default Listings;

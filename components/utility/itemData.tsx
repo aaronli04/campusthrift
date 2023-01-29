@@ -25,7 +25,7 @@ const currentListings: Item[] = [
         condition: 'Gently worn',
         size: 'n/a',
         quantityLeft: '6',
-        price: '50',
+        price: '20',
         delivery: 'none',
         returns: 'no returns',
         datePosted: 'Jan. 14th',
@@ -34,7 +34,7 @@ const currentListings: Item[] = [
         listingID: '123459',
         category: 'Math Textbooks',
         description: 'Hardcover, super solid choice',
-        views: 15
+        views: 17
     },
     {
         title: 'Yeezy Boost 350 V2',
@@ -50,7 +50,7 @@ const currentListings: Item[] = [
         imageURLList: ['https://placehold.jp/150x150.png', 'https://via.placeholder.com/175'],
         listingID: '123456',
         views: 0,
-        category: 'Shoe',
+        category: 'Yeezy Shoes',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius odio ut nibh accumsan, ac cursus dui consectetur. Proin ut posuere lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ac vulputate ex. Duis suscipit ante non nunc iaculis, ut faucibus dolor varius. Fusce in risus erat.'
     },
     {
@@ -67,11 +67,11 @@ const currentListings: Item[] = [
         imageURLList: ['https://placehold.jp/150x150.png', 'https://via.placeholder.com/175'],
         listingID: '123457',
         views: 1,
-        category: 'Shoe',
+        category: 'Nike Shoes',
         description: 'Really nice shoes, airy, and comfortable'
     },
     {
-        title: 'Textbook',
+        title: 'Biology 101',
         seller: 'Aaron',
         condition: 'Gently worn',
         size: '9.5',
@@ -83,7 +83,7 @@ const currentListings: Item[] = [
         dateSold: 'n/a',
         imageURLList: ['https://placehold.jp/150x150.png', 'https://via.placeholder.com/175'],
         listingID: '123458',
-        category: 'Book',
+        category: 'Science Textbooks',
         description: 'Really nice shoes, airy, and comfortable',
         views: 15
     },
@@ -117,7 +117,7 @@ const currentListings: Item[] = [
         dateSold: 'n/a',
         imageURLList: ['https://placehold.jp/150x150.png', 'https://via.placeholder.com/175'],
         listingID: '123460',
-        category: 'Shoe',
+        category: 'Yeezy Shoes',
         description: 'Really nice shoes, airy, and comfortable',
         views: 73
     },

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-    SimpleGrid,
     Text
 } from '@chakra-ui/react'
 import currentListings from "../../../components/utility/itemData";
@@ -8,10 +7,12 @@ import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Listing from "../../../components/Buy/Listing";
 import { Item } from "../../../types/item";
+import Listings from '../../../components/Buy/Listings';
 
 const SearchResults = () => {
     const [pageURL, setPageURL] = useState<string>("")
-    const [listings, setListings] = useState<Item[]>(currentListings)
+    const [shownListings, setShownListings] = useState<Item[]>(currentListings)
+    const [loaded, setLoaded] = useState<Boolean>(false)
 
     React.useEffect(() => {
         const searchIndex = location.href.search('/search/') + 8
@@ -19,10 +20,13 @@ const SearchResults = () => {
     }, [])
 
     React.useEffect(() => {
-        setListings(currentListings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())))
+        if (pageURL.length !== 0) {
+                    setShownListings(shownListings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())))
+        setLoaded(true)
+        }
     }, [pageURL])
 
-    if (listings.length > 0 && pageURL.length != 0) {
+    if (shownListings.length > 0 && pageURL.length != 0 && loaded) {
         return (
             <PageContainer>
                 <Head>
@@ -30,22 +34,12 @@ const SearchResults = () => {
                         Campus Thrift | Results
                     </title>
                 </Head>
-                <SimpleGrid columns={4} spacing={5}>
-                    {
-                        listings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())).map((listing, index) => (
-                            <Listing
-                                key={index}
-                                listing={listing}
-                            />
-                        ))
-                    }
-                </SimpleGrid>
-
+                <Listings listings={shownListings}/>
             </PageContainer>
         );
     }
 
-    else if (listings.length === 0 && pageURL.length != 0) {
+    else if (shownListings.length === 0 && pageURL.length != 0 && loaded) {
         return (
             <PageContainer>
                 <Text fontSize="2xl">

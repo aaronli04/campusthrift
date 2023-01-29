@@ -10,18 +10,36 @@ import {
     MenuList
 } from '@chakra-ui/react';
 import React from 'react'
-import currentListings from '../utility/itemData';
+import { Item } from '../../types/item';
 import SortedListings from './SortedListings';
 
-const Listings: React.FC = () => {
+interface Props {
+    listings: Item[]
+}
+
+const Listings: React.FC<Props> = ( { listings } ) => {
     
     const [sort, setSort] = React.useState<number>(0)
+    const [shownListings, setShownListings] = React.useState<Item[]>(listings)
+    const [listingsShownText, setListingsShownText] = React.useState<String>("")
+
     const options = [
         "Default",
         "Trending",
         "Low Price",
         "High Price"
     ]
+
+    React.useEffect(() => {
+        if (shownListings.length === 1) {
+            setListingsShownText(`${shownListings.length} listing shown`)
+        } else if (shownListings.length === 0) {
+            setListingsShownText(`No listings shown`)
+        }
+        else {
+            setListingsShownText(`${shownListings.length} listings shown`)
+        }
+    }, [shownListings])
 
     return (
         <VStack
@@ -31,7 +49,7 @@ const Listings: React.FC = () => {
                 <Text
                     fontSize='lg'
                 >
-                    {currentListings.length} listings shown
+                    {listingsShownText}
                 </Text>
                 <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
@@ -45,7 +63,7 @@ const Listings: React.FC = () => {
                     </MenuList>
                 </Menu>
             </HStack>
-            <SortedListings option={options[sort]}/>
+            <SortedListings shownListings={shownListings} option={options[sort]}/>
         </VStack>
     )
 }

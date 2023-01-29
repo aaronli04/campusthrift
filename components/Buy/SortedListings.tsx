@@ -3,18 +3,18 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { Item } from '../../types/item';
-import currentListings from '../utility/itemData'
 import Listing from './Listing'
 
 interface Props {
     option: string;
+    shownListings: Item[];
 }
 
-const SortedListings: React.FC<Props> = ({ option }) => {
-    const[listings, setListings] = React.useState<Item[]>(currentListings)
+const SortedListings: React.FC<Props> = ({ option, shownListings }) => {
+    const[listings, setListings] = React.useState<Item[]>(shownListings)
     React.useEffect(() => {
         if (option === "Default") {
-            setListings(currentListings)
+            setListings(shownListings)
         }
         else if (option === "Trending") {
             setListings([...listings].sort((a, b) => {
@@ -44,9 +44,9 @@ const SortedListings: React.FC<Props> = ({ option }) => {
             }))
         }
         else {
-            setListings(currentListings)
+            setListings(shownListings)
         }
-    }, [option])
+    }, [option, listings, shownListings])
 
     return (
         <SimpleGrid columns={4} spacing={5}>

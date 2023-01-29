@@ -19,7 +19,14 @@ const LoginModal = () => {
 
     return (
         <Flex>
-            <Button variant='ghost' padding={1} onClick={onOpen}>LOGIN</Button>
+            <Button
+                variant='ghost'
+                padding={1}
+                onClick={onOpen}
+                _hover={{ bg: 'none' }}
+            >
+                LOGIN
+            </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

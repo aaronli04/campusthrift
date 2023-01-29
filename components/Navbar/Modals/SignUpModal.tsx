@@ -18,7 +18,14 @@ const SignUpModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Flex>
-            <Button variant='ghost' padding={1} onClick={onOpen}>SIGN UP</Button>
+            <Button
+                variant='ghost'
+                padding={1}
+                onClick={onOpen}
+                _hover={{ bg: 'none' }}
+            >
+                SIGN UP
+            </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

@@ -1,6 +1,4 @@
 import React from "react";
-import currentListings from "../utility/itemData";
-
 import {
     Accordion,
     AccordionButton,
@@ -53,7 +51,6 @@ const Filter: React.FC = () => {
                             </VStack>
                         </AccordionPanel>
                     </AccordionItem>
-
                     <AccordionItem>
                         <h2>
                             <AccordionButton>
@@ -70,6 +67,26 @@ const Filter: React.FC = () => {
                                 </Link>
                                 <Link href='/categories/Science Textbooks'>
                                     Science
+                                </Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+                    <AccordionItem>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Shoes
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <VStack gap={2}>
+                                <Link href='/categories/Yeezy Shoes'>
+                                    Yeezy
+                                </Link>
+                                <Link href='/categories/Nike Shoes'>
+                                    Nike
                                 </Link>
                             </VStack>
                         </AccordionPanel>

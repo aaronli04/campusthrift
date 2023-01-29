@@ -1,12 +1,14 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import React from 'react'
-import { SimpleGrid, Text } from '@chakra-ui/react'
+import { Flex, HStack, Text } from '@chakra-ui/react'
 import currentListings from "../../../components/utility/itemData";
 import categories from "../../../components/utility/categoryData";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
-import Listing from "../../../components/Buy/Listing";
 import { Item } from "../../../types/item";
+import Filter from "../../../components/Buy/Filter";
+import Listings from "../../../components/Buy/Listings";
+
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -21,14 +23,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { props: { categoryName } }
 }
 
-const Listings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const [listings, setListings] = React.useState<Item[]>(currentListings)
+const CategoryListings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProps>) => {
+    const [shownListings, setShownListings] = React.useState<Item[]>(currentListings)
+    const [loaded, setLoaded] = React.useState<Boolean>(false)
 
     React.useEffect(() => {
-        setListings(currentListings.filter(listing => listing.category.includes(categoryName)))
+        setShownListings(currentListings.filter(listing => listing.category.includes(categoryName)))
+        setLoaded(true)
     }, [categoryName])
 
-    if (listings.length != 0) {
+    if (shownListings.length != 0 && loaded) {
         return (
             <PageContainer>
                 <Head>
@@ -36,21 +40,15 @@ const Listings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProp
                         Campus Thrift | Results
                     </title>
                 </Head>
-                <SimpleGrid columns={4} spacing={5}>
-                    {
-                        currentListings.filter(listing => listing.category.includes(categoryName)).map((listing, index) => (
-                            <Listing
-                                key={index}
-                                listing={listing}
-                            />
-                        ))
-                    }
-                </SimpleGrid>
+                <Flex direction="row" w="100%" gap={12} flex={1}>
+                    <Filter />
+                    <Listings listings={shownListings} />
+                </Flex>
             </PageContainer>
         );
     }
 
-    else {
+    if (shownListings.length == 0 && loaded) {
         return (
             <PageContainer>
                 <Head>
@@ -66,4 +64,4 @@ const Listings = ({ categoryName }: InferGetStaticPropsType<typeof getStaticProp
     }
 }
 
-export default Listings;
+export default CategoryListings;

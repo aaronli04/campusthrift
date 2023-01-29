@@ -49,7 +49,7 @@ const Listing: React.FC<Props> = ({ listing }) => {
                     <Text
                         fontSize='sm'
                     >
-                        {listing.price}
+                        ${listing.price}
                     </Text>
                 </HStack>
             </VStack>

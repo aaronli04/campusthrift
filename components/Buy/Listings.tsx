@@ -1,7 +1,6 @@
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
     VStack,
-    SimpleGrid,
     HStack,
     Text,
     Menu,
@@ -12,8 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react'
 import currentListings from '../utility/itemData';
-
-import Listing from './Listing'
+import SortedListings from './SortedListings';
 
 const Listings: React.FC = () => {
     
@@ -40,23 +38,14 @@ const Listings: React.FC = () => {
                         Sort by:
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>Default</MenuItem>
-                        <MenuItem>Trending</MenuItem>
-                        <MenuItem>Low Price</MenuItem>
-                        <MenuItem>High Price</MenuItem>
+                        <MenuItem onClick={() => setSort(0)}>{options[0]}</MenuItem>
+                        <MenuItem onClick={() => setSort(1)}>{options[1]}</MenuItem>
+                        <MenuItem onClick={() => setSort(2)}>{options[2]}</MenuItem>
+                        <MenuItem onClick={() => setSort(3)}>{options[3]}</MenuItem>
                     </MenuList>
                 </Menu>
             </HStack>
-            <SimpleGrid columns={4} spacing={5}>
-                {
-                    currentListings.map((listing, index) => (
-                        <Listing
-                            key={index}
-                            listing={listing}
-                        />
-                    ))
-                }
-            </SimpleGrid>
+            <SortedListings option={options[sort]}/>
         </VStack>
     )
 }

@@ -13,7 +13,7 @@ interface Props {
     active: boolean
 }
 
-const NavItem: React.FC<Props> = ({ route, active }) => {
+const NavItem: React.FC<Props> = ({ route }) => {
     return (
         <Button
             colorScheme='blackAlpha'

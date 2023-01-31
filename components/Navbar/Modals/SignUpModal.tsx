@@ -41,16 +41,7 @@ const SignUpModal = () => {
                             By creating an account on Campus Thrift you&apos;ll be able to buy, sell, comment, and more.
                         </Text>
                     </ModalBody>
-                    <ModalFooter>
-                        <HStack spacing={0}>
-                            <Text>
-                                Already have an account?
-                            </Text>
-                            <Button padding={1} margin={0} variant='ghost' fontSize='md' fontWeight='normal' as='u'>
-                                Log in
-                            </Button>
-                        </HStack>
-                    </ModalFooter>
+                    <ModalFooter />
                 </ModalContent>
             </Modal>
         </Flex>

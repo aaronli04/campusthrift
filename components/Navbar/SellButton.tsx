@@ -1,33 +1,39 @@
-import React from 'react'
 import {
     Button,
     Flex,
+    Link,
     Modal,
-    ModalBody,
-    ModalCloseButton,
     ModalContent,
     ModalHeader,
     ModalOverlay,
     useDisclosure,
     Text,
+    ModalBody,
     ModalFooter,
-    HStack
+    HStack,
+    ModalCloseButton
 } from '@chakra-ui/react'
+import React from 'react'
 
-const LoginModal = () => {
+const SellButton = () => {
+    const [auth, setAuth] = React.useState<Boolean>(true)
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    if (auth) {
+        return (
+            <Button variant='ghost' _hover={{ bg: 'none' }}>
+                <Link href='/sell' style={{ textDecoration: 'none' }}>
+                    SELL
+                </Link>
+            </Button>
+        )
+    }
 
     return (
         <Flex>
-            <Button
-                variant='ghost'
-                padding={1}
-                onClick={onOpen}
-                _hover={{ bg: 'none' }}
-            >
-                LOGIN
+            <Button variant='ghost' _hover={{ bg: 'none' }} onClick={onOpen}>
+                SELL
             </Button>
-
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -49,4 +55,4 @@ const LoginModal = () => {
     )
 }
 
-export default LoginModal
+export default SellButton

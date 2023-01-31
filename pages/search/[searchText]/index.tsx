@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import {
     Text
 } from '@chakra-ui/react'
-import currentListings from "../../../components/utility/itemData";
+import currentListings from "../../../components/utility/listingsData/currentListings";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
-import Listing from "../../../components/Buy/Listing";
 import { Item } from "../../../types/item";
 import Listings from '../../../components/Buy/Listings';
 

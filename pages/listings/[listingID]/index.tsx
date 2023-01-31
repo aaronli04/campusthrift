@@ -19,7 +19,7 @@ import {
     Stack,
     CardFooter
 } from '@chakra-ui/react'
-import currentListings from "../../../components/utility/itemData";
+import currentListings from "../../../components/utility/listingsData/currentListings";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";

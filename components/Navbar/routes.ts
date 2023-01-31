@@ -7,10 +7,6 @@ const routes : Route[]  = [
     {
         path: "/buy",
         title: "BUY",
-    },
-    {
-        path: "/sell",
-        title: "SELL",
     }
 ]
 

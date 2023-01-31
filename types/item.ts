@@ -1,7 +1,10 @@
+import { JSDocNonNullableType } from "typescript";
+
 export interface Item {
     title: string;
     seller: string;
     listingID: string;
+    transactionID: string | null;
     condition: string;
     description: string;
     category: string;

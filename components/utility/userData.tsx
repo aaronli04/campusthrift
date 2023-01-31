@@ -1,7 +1,6 @@
 import React from "react"
 import { UserData } from "../../types/user"
 
-
 const users: UserData[] = [
     {
         email: 'aaron.li@vanderbilt.edu',
@@ -9,6 +8,7 @@ const users: UserData[] = [
         lastName: 'Li',
         profilePicture: 'https://via.placeholder.com/150',
         userID: '312890xjdhaf',
+        school: 'Vanderbilt University',
         followers: [],
         listingsPosted: [
             {
@@ -54,3 +54,5 @@ const users: UserData[] = [
         type: 'user'
     }
 ]
+
+export default users;

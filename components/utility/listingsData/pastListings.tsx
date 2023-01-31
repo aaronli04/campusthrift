@@ -39,3 +39,5 @@ const pastListings: Item[] = [
         transactionID: null
     }
 ]
+
+export default pastListings

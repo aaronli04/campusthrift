@@ -1,5 +1,3 @@
-import { JSDocNonNullableType } from "typescript";
-
 export interface Item {
     title: string;
     seller: string;

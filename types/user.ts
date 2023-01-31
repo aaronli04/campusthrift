@@ -6,6 +6,7 @@ export interface UserData {
     lastName: string;
     userID: string;
     profilePicture: string;
+    school: string;
     followers: UserData[];
     listingsPosted: Item[];
     listingsSold: Item[];

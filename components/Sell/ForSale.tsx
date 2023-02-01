@@ -1,0 +1,47 @@
+import React from 'react'
+import {
+    SimpleGrid,
+    Text,
+    VStack
+} from "@chakra-ui/react"
+import { UserData } from '../../types/user'
+import Listing from '../Buy/Listing'
+
+interface Props {
+    user: UserData
+}
+
+const ForSale: React.FC<Props> = ({ user }) => {
+    if (user.listingsPosted.length !== 0) {
+        return (
+            <VStack>
+                <Text>
+                    For Sale
+                </Text>
+                <SimpleGrid columns={4} spacing={5}>
+                    {
+                        user.listingsPosted.map((listing, index) => (
+                            <Listing
+                                key={index}
+                                listing={listing}
+                            />
+                        ))
+                    }
+                </SimpleGrid>
+            </VStack>
+        )
+    }
+
+    return (
+        <VStack>
+            <Text>
+                For Sale
+            </Text>
+            <Text>
+                No listings posted.
+            </Text>
+        </VStack>
+    )
+}
+
+export default ForSale

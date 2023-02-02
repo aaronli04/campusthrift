@@ -15,7 +15,10 @@ const PastSales: React.FC<Props> = ({ user }) => {
     if (user.listingsSold.length !== 0) {
         return (
             <VStack>
-                <Text>
+                <Text
+                    fontSize='2xl'
+                    fontWeight='semibold'
+                >
                     Listings Sold
                 </Text>
                 <SimpleGrid columns={4} spacing={5}>
@@ -34,10 +37,15 @@ const PastSales: React.FC<Props> = ({ user }) => {
 
     return (
         <VStack>
-            <Text>
+            <Text
+                fontSize='2xl'
+                fontWeight='semibold'
+            >
                 Listings Sold
             </Text>
-            <Text>
+            <Text
+                fontSize='lg'
+            >
                 No listings sold.
             </Text>
         </VStack>

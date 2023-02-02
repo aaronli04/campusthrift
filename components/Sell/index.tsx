@@ -12,8 +12,10 @@ const Sell: React.FC = () => {
     <Flex direction="row" w="100%" gap={12} flex={1} justifyContent="center">
       <VStack>
         <ProfileBar user={users[0]} />
-        <ForSale user={users[0]}/>
-        <PastSales user={users[0]}/>
+        <VStack spacing={20}>
+          <ForSale user={users[0]} />
+          <PastSales user={users[0]} />
+        </VStack>
       </VStack>
     </Flex>
   )

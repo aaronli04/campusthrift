@@ -15,7 +15,10 @@ const ForSale: React.FC<Props> = ({ user }) => {
     if (user.listingsPosted.length !== 0) {
         return (
             <VStack>
-                <Text>
+                <Text
+                    fontSize='2xl'
+                    fontWeight='semibold'
+                >
                     For Sale
                 </Text>
                 <SimpleGrid columns={4} spacing={5}>
@@ -34,10 +37,15 @@ const ForSale: React.FC<Props> = ({ user }) => {
 
     return (
         <VStack>
-            <Text>
+            <Text
+                fontSize='2xl'
+                fontWeight='semibold'
+            >
                 For Sale
             </Text>
-            <Text>
+            <Text
+                fontSize='lg'
+            >
                 No listings posted.
             </Text>
         </VStack>

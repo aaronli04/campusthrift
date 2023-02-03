@@ -1,5 +1,5 @@
 import React from "react"
-import { Item } from "../../../types/item"
+import { Item } from "../../../hooks/types"
 
 const currentListings: Item[] = [
     {

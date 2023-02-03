@@ -10,7 +10,7 @@ interface Props {
     children: React.ReactNode
 }
 
-const Layout : React.FC<Props> = ({ children }) => {
+const NoNavLayout : React.FC<Props> = ({ children }) => {
   return (
     <Flex
       minH='100vh'
@@ -19,7 +19,6 @@ const Layout : React.FC<Props> = ({ children }) => {
       alignItems='center'
       gap={75}
     >
-      <Navbar />
       <Flex
         flex={1}
         direction='column'
@@ -31,4 +30,4 @@ const Layout : React.FC<Props> = ({ children }) => {
   )
 }
 
-export default Layout
+export default NoNavLayout

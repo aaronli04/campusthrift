@@ -8,7 +8,7 @@ import {
     VStack
 } from '@chakra-ui/react'
 import React from 'react'
-import { UserData } from '../../types/user'
+import { UserData } from '../../hooks/types'
 
 interface Props {
     user: UserData
@@ -19,10 +19,10 @@ const ProfileBar: React.FC<Props> = ({ user }) => {
     const [userFollowersText, setUserFollowersText] = React.useState<String>("")
 
     React.useEffect(() => {
-        if (user.transactions.length == 1) {
-            setUserTransactionsText(`${user.transactions.length} transaction`)
+        if (user.listingsSold.length == 1) {
+            setUserTransactionsText(`${user.listingsSold.length} transaction`)
         } else {
-            setUserTransactionsText(`${user.transactions.length} transactions`)
+            setUserTransactionsText(`${user.listingsSold.length} transactions`)
         }
         if (user.followers.length == 1) {
             setUserFollowersText(`${user.followers.length} follower`)

@@ -5,8 +5,9 @@ import {
 import currentListings from "../../../components/utility/listingsData/currentListings";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
-import { Item } from "../../../types/item";
+import { Item } from "../../../hooks/types";
 import Listings from '../../../components/Buy/Listings';
+import Layout from '../../../layouts/Layout';
 
 const SearchResults = () => {
     const [pageURL, setPageURL] = useState<string>("")
@@ -20,31 +21,35 @@ const SearchResults = () => {
 
     React.useEffect(() => {
         if (pageURL.length !== 0) {
-                    setShownListings(shownListings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())))
-        setLoaded(true)
+            setShownListings(shownListings.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase())))
+            setLoaded(true)
         }
     }, [pageURL])
 
     if (shownListings.length > 0 && pageURL.length != 0 && loaded) {
         return (
-            <PageContainer>
-                <Head>
-                    <title>
-                        Campus Thrift | Results
-                    </title>
-                </Head>
-                <Listings listings={shownListings}/>
-            </PageContainer>
+            <Layout>
+                <PageContainer>
+                    <Head>
+                        <title>
+                            Campus Thrift | Results
+                        </title>
+                    </Head>
+                    <Listings listings={shownListings} />
+                </PageContainer>
+            </Layout>
         );
     }
 
     else if (shownListings.length === 0 && pageURL.length != 0 && loaded) {
         return (
-            <PageContainer>
-                <Text fontSize="2xl">
-                    There are no listings for your search
-                </Text>
-            </PageContainer>
+            <Layout>
+                <PageContainer>
+                    <Text fontSize="2xl">
+                        There are no listings for your search
+                    </Text>
+                </PageContainer>
+            </Layout>
         )
     }
 }

@@ -5,9 +5,10 @@ import currentListings from "../../../components/utility/listingsData/currentLis
 import categories from "../../../components/utility/categoryData";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
-import { Item } from "../../../types/item";
+import { Item } from "../../../hooks/types";
 import Filter from "../../../components/Buy/Filter";
 import Listings from "../../../components/Buy/Listings";
+import Layout from "../../../layouts/Layout";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const paths = categories.map((category) => ({
@@ -32,32 +33,36 @@ const CategoryListings = ({ categoryName }: InferGetStaticPropsType<typeof getSt
 
     if (shownListings.length != 0 && loaded) {
         return (
-            <PageContainer>
-                <Head>
-                    <title>
-                        Campus Thrift | Results
-                    </title>
-                </Head>
-                <Flex direction="row" w="100%" gap={12} flex={1}>
-                    <Filter />
-                    <Listings listings={shownListings} />
-                </Flex>
-            </PageContainer>
+            <Layout>
+                <PageContainer>
+                    <Head>
+                        <title>
+                            Campus Thrift | Results
+                        </title>
+                    </Head>
+                    <Flex direction="row" w="100%" gap={12} flex={1}>
+                        <Filter />
+                        <Listings listings={shownListings} />
+                    </Flex>
+                </PageContainer>
+            </Layout>
         );
     }
 
     if (shownListings.length == 0 && loaded) {
         return (
-            <PageContainer>
-                <Head>
-                    <title>
-                        Campus Thrift | Results
-                    </title>
-                </Head>
-                <Text fontSize="2xl">
-                    There are no listings in this category
-                </Text>
-            </PageContainer>
+            <Layout>
+                <PageContainer>
+                    <Head>
+                        <title>
+                            Campus Thrift | Results
+                        </title>
+                    </Head>
+                    <Text fontSize="2xl">
+                        There are no listings in this category
+                    </Text>
+                </PageContainer>
+            </Layout>
         )
     }
 }

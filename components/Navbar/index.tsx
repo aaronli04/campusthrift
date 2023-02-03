@@ -7,17 +7,13 @@ import {
     Flex,
     Link,
     Image,
-    HStack,
-    ButtonGroup
+    HStack
 } from '@chakra-ui/react'
 
 import NavItem from './NavItem';
 
 import { useRouter } from 'next/router';
-import LoginModal from './Modals/LoginModal';
-import SignUpModal from './Modals/SignUpModal';
 import Searchbar from '../Search/Searchbar';
-import SellButton from './SellButton';
 
 
 export const navbarHeight = 4;
@@ -66,11 +62,6 @@ const Navbar: React.FC = () => {
                         />
                     ))
                 }
-                <ButtonGroup gap={20}>
-                    <SellButton />
-                    <LoginModal />
-                    <SignUpModal />
-                </ButtonGroup>
             </Flex>
         </HStack>
     )

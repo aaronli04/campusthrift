@@ -9,7 +9,7 @@ import {
     Link
 } from '@chakra-ui/react';
 
-import { Item } from '../../types/item';
+import { Item } from '../../hooks/types';
 
 
 interface Props {

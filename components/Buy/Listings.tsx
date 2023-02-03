@@ -10,7 +10,7 @@ import {
     MenuList
 } from '@chakra-ui/react';
 import React from 'react'
-import { Item } from '../../types/item';
+import { Item } from '../../hooks/types';
 import SortedListings from './SortedListings';
 
 interface Props {

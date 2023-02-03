@@ -4,7 +4,7 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react"
-import { UserData } from '../../types/user'
+import { UserData } from '../../hooks/types'
 import Listing from '../Buy/Listing'
 
 interface Props {

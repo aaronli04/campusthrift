@@ -1,13 +1,17 @@
 import React from 'react'
 import {
-    Text
+  Text
 } from '@chakra-ui/react'
+import Layout from '../../layouts/Layout'
 
 const NewListing = () => {
   return (
-    <Text>
+    <Layout>
+      <Text>
         Hello
-    </Text>
+      </Text>
+    </Layout>
+
   )
 }
 

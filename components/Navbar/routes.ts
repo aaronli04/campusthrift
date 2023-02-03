@@ -7,6 +7,18 @@ const routes : Route[]  = [
     {
         path: "/buy",
         title: "BUY",
+    },
+    {
+        path: "/sell",
+        title: "SELL"
+    },
+    {
+        path: "/login",
+        title: "LOGIN",
+    },
+    {
+        path: "/signup",
+        title: "SIGN UP",
     }
 ]
 

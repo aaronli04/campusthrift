@@ -1,5 +1,5 @@
 import React from "react"
-import { UserData } from "../../types/user"
+import { UserData } from "../../hooks/types"
 
 const users: UserData[] = [
     {
@@ -9,6 +9,7 @@ const users: UserData[] = [
         profilePicture: 'https://via.placeholder.com/150',
         userID: '312890xjdhaf',
         school: 'Vanderbilt University',
+        following: [],
         followers: [],
         listingsPosted: [
             {
@@ -50,7 +51,6 @@ const users: UserData[] = [
                 transactionID: null
             }
         ],
-        transactions: '1',
         type: 'user'
     }
 ]

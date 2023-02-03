@@ -1,21 +1,21 @@
 import React from 'react'
 
 import { NextPage } from 'next'
-import Login from '../components/Login'
 import Head from 'next/head'
 import NoNavLayout from '../layouts/NoNavLayout'
+import SignUp from '../components/SignUp'
 
-const LoginPage: NextPage = () => {
+const SignUpPage: NextPage = () => {
   return (
     <NoNavLayout>
       <Head>
         <title>
-          Campus Thrift | Login
+          Campus Thrift | Sign Up
         </title>
       </Head>
-      <Login />
+      <SignUp />
     </NoNavLayout>
   )
 }
 
-export default LoginPage
+export default SignUpPage

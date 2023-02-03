@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
     return (
         <VStack justifyContent="center" width="100%" mt='20vh'>
             <VStack spacing={5}>
@@ -24,17 +24,17 @@ const Login: React.FC = () => {
                         fontSize='3xl'
                         fontWeight='bold'
                     >
-                        Login
+                        Create an Account
                     </Text>
                     <Text>
-                        Log in to your Campus Thrift account to buy, sell, comment, and more.
+                        By creating an account on Campus Thrift you&apos;ll be able to buy, sell, comment, and more.
                     </Text>
                     <HStack>
                         <Text>
-                            Don&apos;t have an account?
+                            Already have an account?
                         </Text>
-                        <Link href='/signup' sx={{textDecor: 'underline'}}>
-                            Sign Up
+                        <Link href='/login' sx={{textDecor: 'underline'}}>
+                            Log in
                         </Link>
                     </HStack>
                 </VStack>
@@ -43,4 +43,4 @@ const Login: React.FC = () => {
     );
 };
 
-export default Login;
+export default SignUp;

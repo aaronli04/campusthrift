@@ -25,7 +25,7 @@ const GoogleSignIn = () => {
             <HStack spacing={3}>
                 <Icon as={FcGoogle} boxSize={6} />
                 <Text>
-                    Login with Google
+                    Continue with Google
                 </Text>
             </HStack>
         </Button>

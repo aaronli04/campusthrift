@@ -33,14 +33,6 @@ const SignUp: React.FC = () => {
                     <VStack h={20} justifyContent='center'>
                         <ContinueWithGoogle />
                     </VStack>
-                    <HStack>
-                        <Text>
-                            Already have an account?
-                        </Text>
-                        <Link href='/login' sx={{ textDecor: 'underline' }}>
-                            Log in
-                        </Link>
-                    </HStack>
                 </VStack>
             </VStack>
         </VStack>

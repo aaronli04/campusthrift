@@ -1,5 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import { HStack, IconButton, Input } from '@chakra-ui/react'
+import { Box, HStack, IconButton, Input } from '@chakra-ui/react'
 import React from 'react'
 
 const Searchbar = () => {
@@ -24,7 +24,7 @@ const Searchbar = () => {
                 width='45%'
                 spacing={0}
                 border='1px solid black'
-            >
+        >
                 <Input placeholder='Search' border='hidden' focusBorderColor='transparent' onChange={handleSearchTextChange} onKeyDown={handleKeyDown}/>
                 <IconButton
                     variant='ghost'

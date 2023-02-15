@@ -13,8 +13,7 @@ import {
 import NavItem from './NavItem';
 
 import { useRouter } from 'next/router';
-import Searchbar from '../Search/Searchbar';
-
+import Searchbar from './Search/Searchbar';
 
 export const navbarHeight = 4;
 
@@ -32,7 +31,7 @@ const Navbar: React.FC = () => {
             position='relative'
             alignItems='space-between'
             gap={15}
-            width='90%'
+            width='80%'
         >
             <Link
                 href='/'

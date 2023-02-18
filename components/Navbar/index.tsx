@@ -40,8 +40,8 @@ const Navbar: React.FC = () => {
                     colorScheme='brand'
                 >
                     <Image
-                        height={150}
-                        width={150}
+                        height={40}
+                        width={40}
                         src="/logo.png"
                         alt='campusthrift logo'
                     />

@@ -1,5 +1,5 @@
 import React from "react"
-import { UserData } from "../../hooks/types"
+import { UserData } from "../../../hooks/types"
 
 const users: UserData[] = [
     {
@@ -33,7 +33,9 @@ const users: UserData[] = [
                     {
                         poster: "xyz",
                         datePosted: "2/18/23",
-                        commentBody: "this item sucks!"
+                        commentBody: "this item sucks!",
+                        likes: "1",
+                        dislikes: "2"
                     }
                 ]
             }
@@ -60,7 +62,9 @@ const users: UserData[] = [
                     {
                         poster: "xyz",
                         datePosted: "2/18/23",
-                        commentBody: "this item sucks!"
+                        commentBody: "this item sucks!",
+                        likes: "1",
+                        dislikes: "2"
                     }
                 ]
             }

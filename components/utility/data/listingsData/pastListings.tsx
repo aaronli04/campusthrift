@@ -2,7 +2,7 @@ import React from "react"
 import {
     Item,
     Comment
-} from "../../../hooks/types"
+} from "../../../../hooks/types"
 
 const pastListings: Item[] = [
     {
@@ -26,7 +26,9 @@ const pastListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },
@@ -51,7 +53,9 @@ const pastListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Item } from "../../../hooks/types"
+import { Item } from "../../../../hooks/types"
 
 const currentListings: Item[] = [
     {
@@ -23,12 +23,16 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             },
             {
                 poster: "abc",
                 datePosted: "2/18/23",
-                commentBody: "this item rules! you suck!"
+                commentBody: "this item rules! you suck!",
+                likes: "5",
+                dislikes: "2"
             }
         ]
     },
@@ -50,11 +54,6 @@ const currentListings: Item[] = [
         views: 17,
         transactionID: null,
         comments: [
-            {
-                poster: "xyz",
-                datePosted: "2/18/23",
-                commentBody: "this item sucks!"
-            }
         ]
     },
     {
@@ -78,7 +77,9 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },
@@ -103,7 +104,9 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },
@@ -128,7 +131,9 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },
@@ -153,7 +158,9 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },
@@ -178,7 +185,9 @@ const currentListings: Item[] = [
             {
                 poster: "xyz",
                 datePosted: "2/18/23",
-                commentBody: "this item sucks!"
+                commentBody: "this item sucks!",
+                likes: "1",
+                dislikes: "2"
             }
         ]
     },

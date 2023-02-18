@@ -22,6 +22,8 @@ export interface Comment {
     poster: string;
     datePosted: string;
     commentBody: string;
+    likes: string;
+    dislikes: string;
 }
 
 export interface UserData {

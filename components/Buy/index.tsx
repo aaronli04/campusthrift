@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex } from '@chakra-ui/react'
 import Listings from './Listings'
 import Filter from './Filter'
-import currentListings from '../utility/listingsData/currentListings'
+import currentListings from '../utility/data/listingsData/currentListings'
 
 const Buy: React.FC = () => {
   return (

@@ -14,7 +14,14 @@ export interface Item {
     datePosted: string;
     dateSold: string;
     imageURLList: string[];
+    comments: Comment[];
     views: number;
+}
+
+export interface Comment {
+    poster: string;
+    datePosted: string;
+    commentBody: string;
 }
 
 export interface UserData {

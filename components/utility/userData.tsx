@@ -28,7 +28,14 @@ const users: UserData[] = [
                 category: 'Math Textbooks',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget turpis aliquet, tempor erat id, rutrum nulla. Quisque varius molestie ante quis mollis. Proin et pellentesque lacus. Etiam vel eros semper sem consequat luctus quis id mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus in rutrum lectus. Proin sed sem lorem. Pellentesque vulputate blandit mi et viverra. Ut vehicula gravida felis eu tincidunt. Nunc imperdiet magna elit. Morbi pharetra semper dictum.',
                 views: 15,
-                transactionID: null
+                transactionID: null,
+                comments: [
+                    {
+                        poster: "xyz",
+                        datePosted: "2/18/23",
+                        commentBody: "this item sucks!"
+                    }
+                ]
             }
         ],
         listingsSold: [
@@ -48,7 +55,14 @@ const users: UserData[] = [
                 category: 'Math Textbooks',
                 description: 'Hardcover, super solid choice',
                 views: 17,
-                transactionID: null
+                transactionID: null,
+                comments: [
+                    {
+                        poster: "xyz",
+                        datePosted: "2/18/23",
+                        commentBody: "this item sucks!"
+                    }
+                ]
             }
         ],
         type: 'user'

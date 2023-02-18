@@ -7,7 +7,7 @@ import {
     Link
 } from '@chakra-ui/react';
 import React from 'react';
-import ContinueWithGoogle from '../utility/ContinueWithButtons/ContinueWithGoogle';
+import GoogleSignIn from '../utility/ContinueWithButton/ContinueWithGoogle';
 
 const SignUp: React.FC = () => {
     return (
@@ -16,6 +16,7 @@ const SignUp: React.FC = () => {
                 <Box boxSize={200}>
                     <Link href='/'>
                         <Image
+                            alt='logo'
                             src="/logo.png"
                         />
                     </Link>
@@ -31,7 +32,7 @@ const SignUp: React.FC = () => {
                         By creating an account on Campus Thrift you&apos;ll be able to buy, sell, comment, and more.
                     </Text>
                     <VStack h={20} justifyContent='center'>
-                        <ContinueWithGoogle />
+                        <GoogleSignIn />
                     </VStack>
                 </VStack>
             </VStack>

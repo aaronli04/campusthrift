@@ -24,6 +24,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
+import CommentFormat from "../../../components/utility/CommentFormat"
+import { Comment } from "../../../hooks/types";
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -105,13 +107,20 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                                             Price
                                         </Heading>
                                         <Text pt='2' fontSize='md'>
-                                            {item.price}
+                                            ${item.price}
                                         </Text>
                                     </Box>
                                 </Stack>
                             </CardBody>
                             <CardFooter>
-                                <Button colorScheme='blue'>Offer</Button>
+                                <Button colorScheme='blue'>See Comments</Button>
+                                <VStack>
+                                    {
+                                        item.comments.map((comment: Comment, index: number) => (
+                                            <CommentFormat comment={comment} key={index} />
+                                        ))
+                                    }
+                                </VStack>
                             </CardFooter>
                         </Card>
                     </HStack>

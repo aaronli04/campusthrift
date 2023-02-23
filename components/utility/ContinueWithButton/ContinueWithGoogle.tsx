@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/clientApp';
 
-const GoogleSignIn = () => {
+const GoogleSignIn: React.FC = () => {
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const router = useRouter();
 

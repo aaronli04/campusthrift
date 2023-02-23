@@ -1,8 +1,8 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import { Box, HStack, IconButton, Input } from '@chakra-ui/react'
+import { HStack, IconButton, Input } from '@chakra-ui/react'
 import React from 'react'
 
-const Searchbar = () => {
+const Searchbar: React.FC = () => {
     const [searchText, setSearchText] = React.useState<string>('')
 
     const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {

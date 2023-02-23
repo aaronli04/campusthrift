@@ -4,7 +4,7 @@ import { Flex } from "@chakra-ui/react";
 
 import Header from "./Header";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <Flex direction="column" w="100%" gap={12} flex={1} justifyContent="center">
       <Header />

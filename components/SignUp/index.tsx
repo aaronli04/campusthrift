@@ -3,7 +3,6 @@ import {
     Text,
     Image,
     VStack,
-    HStack,
     Link
 } from '@chakra-ui/react';
 import React from 'react';

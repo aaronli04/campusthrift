@@ -27,18 +27,22 @@ const HomePage: NextPage = () => {
     router.push('/login')
   }
 
-  return (
-    <Layout>
-      <PageContainer>
-        <Head>
-          <title>
-            Campus Thrift
-          </title>
-        </Head>
-        <Home />
-      </PageContainer>
-    </Layout>
-  )
+  if (user) {
+    return (
+      <Layout>
+        <PageContainer>
+          <Head>
+            <title>
+              Campus Thrift
+            </title>
+          </Head>
+          <Home />
+        </PageContainer>
+      </Layout>
+    )
+  }
+
+  return <Loading />
 }
 
 export default HomePage

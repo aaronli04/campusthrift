@@ -13,12 +13,8 @@ const routes : Route[]  = [
         title: "SELL"
     },
     {
-        path: "/login",
-        title: "LOGIN",
-    },
-    {
-        path: "/signup",
-        title: "SIGN UP",
+        path: "/settings",
+        title: "SETTINGS"
     }
 ]
 

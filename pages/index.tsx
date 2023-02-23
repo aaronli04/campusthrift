@@ -7,10 +7,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/clientApp';
 import NotFound from './404'
 import Loading from '../components/Loading'
+import { useRouter } from 'next/router'
 
 
 const HomePage: NextPage = () => {
   const [user, loading, error] = useAuthState(auth)
+  const router = useRouter();
 
   if (error) {
     console.log(error);
@@ -19,6 +21,10 @@ const HomePage: NextPage = () => {
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (!user) {
+    router.push('/login')
   }
 
   return (

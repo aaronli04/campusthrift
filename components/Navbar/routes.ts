@@ -13,8 +13,8 @@ const routes : Route[]  = [
         title: "SELL"
     },
     {
-        path: "/settings",
-        title: "SETTINGS"
+        path: "/profile",
+        title: "PROFILE"
     }
 ]
 

@@ -3,7 +3,7 @@ import {
   Flex, VStack
 } from '@chakra-ui/react'
 import ProfileBar from './ProfileBar'
-import users from '../utility/data/userData'
+import users from '../utility/data/users/userData'
 import ForSale from './ForSale'
 import PastSales from './PastSales'
 

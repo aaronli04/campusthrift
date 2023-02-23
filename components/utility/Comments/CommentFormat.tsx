@@ -19,7 +19,7 @@ interface Props {
 const CommentFormat: React.FC<Props> = ({ comment }) => {
   return (
     <HStack>
-      <Avatar name={comment.poster} />
+      <Avatar name={comment.poster.firstName} />
       <VStack alignItems='flex-start' spacing={0}>
         <Text>{comment.commentBody}</Text>
         <HStack spacing={0}>

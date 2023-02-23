@@ -30,6 +30,11 @@ const Login: React.FC = () => {
                     <Text>
                         Log in to your Campus Thrift account to buy, sell, comment, and more.
                     </Text>
+                    <Text>
+                        Buy good-as-new items for a whole lot less.
+                        Sell things you don&apos;t use anymore.
+                        No fees.
+                    </Text>
                     <VStack h={20} justifyContent='center'>
                         <GoogleSignin />
                     </VStack>

@@ -1,6 +1,6 @@
 export interface Item {
     title: string;
-    seller: string;
+    seller: UserData;
     listingID: string;
     transactionID: string | null;
     condition: string;
@@ -19,7 +19,7 @@ export interface Item {
 }
 
 export interface Comment {
-    poster: string;
+    poster: UserData;
     datePosted: string;
     commentBody: string;
     likes: string;
@@ -37,5 +37,6 @@ export interface UserData {
     followers: UserData[];
     listingsPosted: Item[];
     listingsSold: Item[];
+    listingsPurchased: Item[];
     type: "user" | "administrator";
 }

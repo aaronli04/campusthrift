@@ -1,10 +1,11 @@
 import React from "react"
 import { Item } from "../../../../hooks/types"
+import users from "../users/userData"
 
 const currentListings: Item[] = [
     {
         title: 'Linear Algebra',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: 'n/a',
         quantityLeft: '6',
@@ -21,14 +22,14 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[0],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
                 dislikes: "2"
             },
             {
-                poster: "abc",
+                poster: users[0],
                 datePosted: "2/18/23",
                 commentBody: "this item rules! you suck!",
                 likes: "5",
@@ -38,7 +39,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Multivariable Calculus',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: 'n/a',
         quantityLeft: '6',
@@ -58,7 +59,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Yeezy Boost 350 V2',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: '9.5',
         quantityLeft: '6',
@@ -75,7 +76,7 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[1],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
@@ -85,7 +86,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Nike Air Max',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: '9.5',
         quantityLeft: '6',
@@ -102,7 +103,7 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[1],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
@@ -112,7 +113,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Biology 101',
-        seller: 'Aaron',
+        seller: users[1],
         condition: 'Gently worn',
         size: '9.5',
         quantityLeft: '6',
@@ -129,7 +130,7 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[0],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
@@ -139,7 +140,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Laptop',
-        seller: 'Aaron',
+        seller: users[1],
         condition: 'Gently worn',
         size: '9.5',
         quantityLeft: '6',
@@ -156,7 +157,7 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[0],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
@@ -166,7 +167,7 @@ const currentListings: Item[] = [
     },
     {
         title: 'Yeezy Boost 350 V2',
-        seller: 'Aaron',
+        seller: users[1],
         condition: 'Gently worn',
         size: '9.5',
         quantityLeft: '6',
@@ -183,7 +184,7 @@ const currentListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[0],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",

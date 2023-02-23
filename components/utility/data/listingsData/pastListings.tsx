@@ -1,13 +1,13 @@
 import React from "react"
 import {
-    Item,
-    Comment
+    Item
 } from "../../../../hooks/types"
+import users from "../users/userData"
 
 const pastListings: Item[] = [
     {
         title: 'Linear Algebra',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: 'n/a',
         quantityLeft: '6',
@@ -24,7 +24,7 @@ const pastListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[1],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",
@@ -34,7 +34,7 @@ const pastListings: Item[] = [
     },
     {
         title: 'Linear Algebra',
-        seller: 'Aaron',
+        seller: users[0],
         condition: 'Gently worn',
         size: 'n/a',
         quantityLeft: '6',
@@ -51,7 +51,7 @@ const pastListings: Item[] = [
         transactionID: null,
         comments: [
             {
-                poster: "xyz",
+                poster: users[1],
                 datePosted: "2/18/23",
                 commentBody: "this item sucks!",
                 likes: "1",

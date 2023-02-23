@@ -4,9 +4,9 @@ import { NextPage } from 'next'
 import PageContainer from '../components/utility/PageContainer'
 import Head from 'next/head'
 import Layout from '../layouts/Layout'
-import Settings from '../components/Settings'
+import Profile from '../components/Profile'
 
-const SettingsPage: NextPage = () => {
+const ProfilePage: NextPage = () => {
   return (
     <Layout>
       <PageContainer>
@@ -15,10 +15,10 @@ const SettingsPage: NextPage = () => {
             Campus Thrift | Settings
           </title>
         </Head>
-        <Settings />
+        <Profile />
       </PageContainer>
     </Layout>
   )
 }
 
-export default SettingsPage
+export default ProfilePage

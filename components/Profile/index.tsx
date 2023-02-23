@@ -9,6 +9,7 @@ import {
 import Purchases from './Purchases'
 import users from '../utility/data/users/userData'
 import MyProfile from './MyProfile'
+import SignOut from './SignOut'
 
 const Profile: React.FC = () => {
     return (
@@ -23,6 +24,7 @@ const Profile: React.FC = () => {
                 </TabPanel>
                 <TabPanel>
                     <MyProfile user={users[0]} />
+                    <SignOut />
                 </TabPanel>
             </TabPanels>
         </Tabs>

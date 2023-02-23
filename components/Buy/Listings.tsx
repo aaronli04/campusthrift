@@ -17,11 +17,10 @@ interface Props {
     listings: Item[]
 }
 
-const Listings: React.FC<Props> = ( { listings } ) => {
-    
-    const [sort, setSort] = React.useState<number>(0)
-    const [shownListings, setShownListings] = React.useState<Item[]>(listings)
-    const [listingsShownText, setListingsShownText] = React.useState<String>("")
+const Listings: React.FC<Props> = ({ listings }) => {
+
+    const [sort, setSort] = React.useState<number>(0);
+    listings = [];
 
     const options = [
         "Default",
@@ -30,27 +29,13 @@ const Listings: React.FC<Props> = ( { listings } ) => {
         "High Price"
     ]
 
-    React.useEffect(() => {
-        if (shownListings.length === 1) {
-            setListingsShownText(`${shownListings.length} listing shown`)
-        } else if (shownListings.length === 0) {
-            setListingsShownText(`No listings shown`)
-        }
-        else {
-            setListingsShownText(`${shownListings.length} listings shown`)
-        }
-    }, [shownListings])
-
     return (
         <VStack
             alignItems='flex-start'
         >
             <HStack justifyContent='space-between' spacing={615}>
-                <Text
-                    fontSize='lg'
-                >
-                    {listingsShownText}
-                </Text>
+                {listings.length === 0 ? <Text fontSize='lg'> No listings shown </Text> : <Text fontSize='lg'> {listings.length} listings shown </Text>
+                }
                 <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                         Sort by:
@@ -63,7 +48,7 @@ const Listings: React.FC<Props> = ( { listings } ) => {
                     </MenuList>
                 </Menu>
             </HStack>
-            <SortedListings shownListings={shownListings} option={options[sort]}/>
+            <SortedListings shownListings={listings} option={options[sort]} />
         </VStack>
     )
 }

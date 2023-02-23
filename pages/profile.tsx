@@ -12,7 +12,7 @@ const ProfilePage: NextPage = () => {
       <PageContainer>
         <Head>
           <title>
-            Campus Thrift | Settings
+            Campus Thrift | Profile
           </title>
         </Head>
         <Profile />

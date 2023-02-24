@@ -4,22 +4,16 @@ import {
     Icon,
     Text
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc'
-import { useRouter } from 'next/navigation';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/clientApp';
+import signInUser from '../../../hooks/signInUser'
+import useCreateUser from '../../../hooks/useCreateUser';
 
-const GoogleSignIn: React.FC = () => {
-    const [signInWithGoogle] = useSignInWithGoogle(auth);
-    const router = useRouter();
-
-    const login = async () => {
-        const success = await signInWithGoogle();
-        if (success) {
-            router.push('/');
-        }
-    };
-
+const GoogleSignIn = () => {
+    const { login } = signInUser();
+    
     return (
         <Button h={12} variant="solid" width="xs" onClick={login}>
             <HStack spacing={3}>

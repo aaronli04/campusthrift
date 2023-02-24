@@ -1,11 +1,8 @@
 import { auth, db } from '../firebase/clientApp';
 
 import { 
-    createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut as authSignOut,
-    updateEmail,
-    User
 } from 'firebase/auth';
 
 import { 
@@ -33,7 +30,6 @@ const useAuth = () => {
     const signOut = async () => {
         await authSignOut(auth);
     }
-    
 
     return {
         auth: authObj,

@@ -5,13 +5,10 @@ import userDataTwo from './userDataTwo'
 const users: UserData[] = [
     {
         email: 'aaron.li@vanderbilt.edu',
-        firstName: 'Aaron',
-        lastName: 'Li',
+        username: 'Aaron Li',
+        id: '123890132089',
         profilePicture: 'https://via.placeholder.com/150',
-        userID: '312890xjdhaf',
         school: 'Vanderbilt University',
-        following: [],
-        followers: [],
         listingsPosted: [
             {
                 title: 'Linear Algebra',
@@ -103,13 +100,10 @@ const users: UserData[] = [
     },
     {
         email: 'xyz@vanderbilt.edu',
-        firstName: 'xy',
-        lastName: 'z',
+        username: 'hello',
+        id: '12389013221389',
         profilePicture: 'https://via.placeholder.com/150',
-        userID: '123312',
         school: 'Stanford University',
-        following: [],
-        followers: [],
         listingsPosted: [],
         listingsSold: [],
         listingsPurchased: [],

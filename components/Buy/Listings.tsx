@@ -20,7 +20,6 @@ interface Props {
 const Listings: React.FC<Props> = ({ listings }) => {
 
     const [sort, setSort] = React.useState<number>(0);
-    listings = [];
 
     const options = [
         "Default",

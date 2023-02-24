@@ -28,13 +28,10 @@ export interface Comment {
 
 export interface UserData {
     email: string;
-    firstName: string;
-    lastName: string;
-    userID: string;
+    id: string;
+    username: string;
     profilePicture: string;
     school: string;
-    following: UserData[];
-    followers: UserData[];
     listingsPosted: Item[];
     listingsSold: Item[];
     listingsPurchased: Item[];

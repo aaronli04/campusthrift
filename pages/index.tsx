@@ -8,11 +8,13 @@ import { auth } from '../firebase/clientApp';
 import NotFound from './404'
 import Loading from '../components/Loading'
 import { useRouter } from 'next/router'
+import useAuth from '../hooks/useAuth'
 
 
 const HomePage: NextPage = () => {
   const [user, loading, error] = useAuthState(auth)
   const router = useRouter();
+  const { createUser } = useAuth();
 
   if (error) {
     console.log(error);
@@ -28,6 +30,8 @@ const HomePage: NextPage = () => {
   }
 
   if (user) {
+
+    createUser(user).catch((error) => console.log(error));
     return (
       <Layout>
         <PageContainer>

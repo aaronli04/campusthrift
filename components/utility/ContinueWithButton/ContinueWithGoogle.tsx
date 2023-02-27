@@ -4,12 +4,8 @@ import {
     Icon,
     Text
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc'
-import { auth } from '../../../firebase/clientApp';
 import signInUser from '../../../hooks/signInUser'
-import useCreateUser from '../../../hooks/useCreateUser';
 
 const GoogleSignIn = () => {
     const { login } = signInUser();

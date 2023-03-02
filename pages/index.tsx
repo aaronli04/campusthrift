@@ -9,7 +9,6 @@ import NotFound from './404'
 import Loading from '../components/Loading'
 import { useRouter } from 'next/router'
 import useAuth from '../hooks/useAuth'
-import prisma from '../lib/prisma';
 
 const HomePage: NextPage = () => {
   const [user, loading, error] = useAuthState(auth)

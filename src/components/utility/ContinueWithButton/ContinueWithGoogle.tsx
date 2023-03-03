@@ -5,10 +5,10 @@ import {
     Text
 } from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc'
-import signInUser from '../../../hooks/signInUser'
+import useSignInUser from '../../../hooks/useSignInUser'
 
 const GoogleSignIn = () => {
-    const { login } = signInUser();
+    const { login } = useSignInUser();
     
     return (
         <Button h={12} variant="solid" width="xs" onClick={login}>

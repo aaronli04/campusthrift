@@ -5,7 +5,7 @@ import {
 import currentListings from "../../../components/utility/data/listingsData/currentListings";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
-import { Item } from "../../../hooks/types";
+import { Item } from "../../../hooks/types"
 import Listings from '../../../components/Buy/Listings';
 import Layout from '../../../layouts/Layout';
 

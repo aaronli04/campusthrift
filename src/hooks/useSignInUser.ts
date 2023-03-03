@@ -3,7 +3,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/clientApp'
 
 
-const signInUser = () => {
+const useSignInUser = () => {
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const router = useRouter();
 
@@ -19,4 +19,4 @@ const signInUser = () => {
     }
 }
 
-export default signInUser
+export default useSignInUser

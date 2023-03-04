@@ -6,9 +6,6 @@ import {
 } from "@chakra-ui/react"
 import { UserData } from '../../hooks/types'
 import Listing from '../Buy/Listing'
-import useAuth from '../../hooks/useAuth'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../../firebase/clientApp'
 
 interface Props {
     user: UserData

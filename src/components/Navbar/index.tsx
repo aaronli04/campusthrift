@@ -3,11 +3,11 @@ import React from 'react'
 import routes from './routes'
 
 import {
-    Button,
     Flex,
     Link,
     Image,
-    HStack
+    HStack,
+    Text
 } from '@chakra-ui/react'
 
 import NavItem from './NavItem';
@@ -27,30 +27,23 @@ const Navbar: React.FC = () => {
 
     return (
         <HStack
-            top={10}
-            position='relative'
-            alignItems='space-between'
-            gap={15}
-            width='80%'
+            alignItems='center'
+            justifyContent='center'
+            gap={5}
+            w='100%'
         >
-            <Link
-                href='/'
-            >
-                <Button
-                    colorScheme='brand'
-                >
-                    <Image
-                        height={40}
-                        width={40}
-                        src="/logo.png"
-                        alt='campusthrift logo'
-                    />
-                </Button>
+            <Link href='/'>
+                <Image
+                    height={40}
+                    width={40}
+                    src="/logo.png"
+                    alt='campusthrift logo'
+                />
             </Link>
             <Searchbar />
             <Flex
                 bg='white'
-                gap={20}
+                gap={15}
             >
                 {
                     routes.map((route, index) => (

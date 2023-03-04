@@ -10,8 +10,8 @@ import PastSales from './PastSales'
 const Sell: React.FC = () => {
 
   return (
-    <Flex direction="row" w="100%" gap={12} flex={1} justifyContent="center">
-      <VStack>
+    <Flex direction="row" w="100%" gap={12} flex={1} justifyContent="center" alignItems='center'>
+      <VStack gap={5}>
         <ProfileBar user={users[0]} />
         <VStack spacing={20}>
           <ForSale user={users[0]} />

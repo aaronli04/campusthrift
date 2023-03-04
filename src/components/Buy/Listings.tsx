@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react'
 import { Item } from '../../hooks/types';
+import useDeviceSize from '../../hooks/useDeviceSize';
 import SortedListings from './SortedListings';
 
 interface Props {
@@ -28,11 +29,13 @@ const Listings: React.FC<Props> = ({ listings }) => {
         "High Price"
     ]
 
+    const [width, height] = useDeviceSize();
+
     return (
         <VStack
             alignItems='flex-start'
         >
-            <HStack justifyContent='space-between' spacing={615}>
+            <HStack justifyContent='center' gap={width / 2.34}>
                 {listings.length === 0 ? <Text fontSize='lg'> No listings shown </Text> : <Text fontSize='lg'> {listings.length} listings shown </Text>
                 }
                 <Menu>

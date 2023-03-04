@@ -17,13 +17,14 @@ const Layout : React.FC<Props> = ({ children }) => {
       direction='column'
       position='relative'
       alignItems='center'
-      gap={75}
+      gap={0}
     >
       <Navbar />
       <Flex
         flex={1}
         direction='column'
         pb={`${navbarHeight + 2}rem`}
+        justifyContent='center'
       >
         {children}
       </Flex>

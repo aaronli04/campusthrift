@@ -3,8 +3,7 @@ import {
     Text,
     Image,
     VStack,
-    Link,
-    HStack
+    Link
 } from '@chakra-ui/react';
 import React from 'react';
 import GoogleSignin from '../utility/ContinueWithButton/ContinueWithGoogle';

@@ -18,7 +18,6 @@ const NoNavLayout : React.FC<Props> = ({ children }) => {
       position='relative'
       alignItems='center'
       justifyContent='center'
-      gap={75}
     >
       <Flex
         flex={1}

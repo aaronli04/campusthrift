@@ -10,10 +10,12 @@ import Purchases from './Purchases'
 import users from '../utility/data/users/userData'
 import MyProfile from './MyProfile'
 import SignOut from './SignOut'
+import useDeviceSize from '../../hooks/useDeviceSize'
 
 const Profile: React.FC = () => {
+    const [width, height] = useDeviceSize();
     return (
-        <Tabs variant='line' w={1000} colorScheme='black'>
+        <Tabs variant='line' colorScheme='black' w={width / 2} h={height / 1.2}>
             <TabList>
                 <Tab>Purchases</Tab>
                 <Tab>My Profile</Tab>

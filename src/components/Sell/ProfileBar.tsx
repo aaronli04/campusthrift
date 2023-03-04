@@ -17,7 +17,7 @@ interface Props {
 const ProfileBar: React.FC<Props> = ({ user }) => {
 
     return (
-        <HStack justifyContent='space-between' alignItems='flex-start' w={1000}>
+        <HStack justifyContent='space-between' alignItems='flex-start' gap={20}>
             <HStack alignItems='flex-start' spacing={5}>
                 <Avatar size='xl' name={user.username} src={user.profilePicture} />
                 <VStack alignItems='flex-start' spacing={0}>

@@ -29,8 +29,11 @@ const HomePage: NextPage = () => {
   }
 
   if (user) {
-
-    createUser(user).catch((error) => console.log(error));
+    createUser(user).then(response => {if (response !== null) {
+      if (response.school === "") {
+        router.push('/completeprofile')
+      }
+    }});
     return (
       <Layout>
         <PageContainer>

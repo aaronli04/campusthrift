@@ -15,7 +15,7 @@ import useDeviceSize from '../../hooks/useDeviceSize'
 const Profile: React.FC = () => {
     const [width, height] = useDeviceSize();
     return (
-        <Tabs variant='line' colorScheme='black' w={width / 2} h={height / 1.2}>
+        <Tabs variant='line' colorScheme='black' w={width / 1.5} h={height / 1.2}>
             <TabList>
                 <Tab>Purchases</Tab>
                 <Tab>My Profile</Tab>

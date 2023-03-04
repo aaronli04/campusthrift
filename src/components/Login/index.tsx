@@ -3,14 +3,15 @@ import {
     Text,
     Image,
     VStack,
-    Link
+    Link,
+    HStack
 } from '@chakra-ui/react';
 import React from 'react';
 import GoogleSignin from '../utility/ContinueWithButton/ContinueWithGoogle';
 
 const Login: React.FC = () => {
     return (
-        <VStack justifyContent="center" width="100%" mt='20vh'>
+        <VStack width="100%">
             <VStack spacing={5}>
                 <Box boxSize={200}>
                     <Link href='/'>
@@ -27,10 +28,10 @@ const Login: React.FC = () => {
                     >
                         Login
                     </Text>
-                    <Text>
+                    <Text textAlign='center'>
                         Log in to your Campus Thrift account to buy, sell, comment, and more.
                     </Text>
-                    <Text>
+                    <Text textAlign='center'>
                         Buy good-as-new items for a whole lot less.
                         Sell things you don&apos;t use anymore.
                         No fees.

@@ -4,7 +4,7 @@ import {
   Flex
 } from '@chakra-ui/react'
 
-import Navbar, { navbarHeight } from '../components/Navbar'
+import { navbarHeight } from '../components/Navbar'
 
 interface Props {
     children: React.ReactNode
@@ -17,12 +17,14 @@ const NoNavLayout : React.FC<Props> = ({ children }) => {
       direction='column'
       position='relative'
       alignItems='center'
+      justifyContent='center'
       gap={75}
     >
       <Flex
         flex={1}
         direction='column'
         pb={`${navbarHeight + 2}rem`}
+        justifyContent='center'
       >
         {children}
       </Flex>

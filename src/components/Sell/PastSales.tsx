@@ -7,6 +7,7 @@ import {
 import { UserData } from '../../hooks/types'
 import Listing from '../Buy/Listing'
 
+
 interface Props {
     user: UserData
 }

@@ -4,14 +4,15 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react"
-import { UserData } from '../../hooks/types'
 import Listing from '../Buy/Listing'
+import { UserData } from '../../hooks/types'
 
 interface Props {
     user: UserData
 }
 
-const ForSale: React.FC<Props> = ({ user }) => {
+const ForSale: React.FC<Props> = ( { user } ) => {
+
     if (user.listingsPosted.length !== 0) {
         return (
             <VStack>

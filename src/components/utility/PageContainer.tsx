@@ -16,7 +16,6 @@ const PageContainer : React.FC<Props> = ({ children, bg }) => {
       py={4}
       maxW='100%'
       justifyContent='center'
-      alignItems='center'
     >
       {children}
     </Container>

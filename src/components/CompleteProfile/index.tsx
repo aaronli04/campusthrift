@@ -5,12 +5,10 @@ import {
     Button,
     Box,
     Flex,
-    FormControl,
-    FormLabel,
     useToast
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/clientApp';
 import { UserData } from '../../hooks/types';
@@ -18,16 +16,26 @@ import useAuth from '../../hooks/useAuth';
 import setUserData from '../../hooks/setUserData';
 import schools from '../utility/data/schools'
 import Router from 'next/router';
+import defaultData from '../utility/data/defaultUserData';
 
 const CompleteProfile: React.FC = () => {
     const universities = schools;
-    const [school, setSchool] = React.useState<string>();
     const [user, loading, error] = useAuthState(auth)
     const { createUser } = useAuth();
     const toast = useToast()
+    const [existingData, setExistingData] = useState<UserData>(defaultData);
+
+    useEffect(() => {
+      if (user) {
+        createUser(user).then(response => {
+          if (response !== null) {
+            setExistingData(response);
+          }
+        })
+      }
+    })
 
     const handleOnSubmit = (school: string) => {
-        console.log(school)
         if (user) {
             createUser(user).then(response => {
                 if (response !== null) {
@@ -59,8 +67,8 @@ const CompleteProfile: React.FC = () => {
             <Box bg="white" rounded="md" w={64}>
                 <Formik
                     initialValues={{
-                        college: "",
-                        profilePicture: ""
+                        college: existingData.school,
+                        profilePicture: existingData.profilePicture
                     }}
                     onSubmit={(values) => {
                         handleOnSubmit(values.college);

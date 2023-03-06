@@ -16,6 +16,14 @@ const setUserData = async (userData: UserData) => {
     type: userData.type
   };
 
+  const body = JSON.stringify({ id: userData.id, school: userData.school });
+  fetch('http://localhost:8080/api/updateUser', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body
+  })
+  .then(response => console.log(response.json()))
+
   await setDoc(doc(db, 'users', userData.id), uploadData);
 };
 

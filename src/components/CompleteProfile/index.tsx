@@ -36,7 +36,7 @@ const CompleteProfile: React.FC = () => {
     })
 
     const handleOnSubmit = (school: string) => {
-        if (user) {
+        if (user && school.length > 0) {
             createUser(user).then(response => {
                 if (response !== null) {
                     let data: UserData = {
@@ -59,6 +59,12 @@ const CompleteProfile: React.FC = () => {
                     Router.push('/')
                 }
             });
+        } else {
+            toast({
+                title: `Select a valid school.`,
+                status: 'error',
+                isClosable: true,
+            })
         }
     }
 
@@ -67,8 +73,8 @@ const CompleteProfile: React.FC = () => {
             <Box bg="white" rounded="md" w={64}>
                 <Formik
                     initialValues={{
-                        college: existingData.school,
-                        profilePicture: existingData.profilePicture
+                        college: 'Vanderbilt',
+                        profilePicture: ''
                     }}
                     onSubmit={(values) => {
                         handleOnSubmit(values.college);

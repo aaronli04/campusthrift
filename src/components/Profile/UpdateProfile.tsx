@@ -39,7 +39,7 @@ const UpdateProfile: React.FC = () => {
   })
 
   const handleOnSubmit = (school: string, username: string) => {
-    if (user) {
+    if (user && username.length > 0) {
       createUser(user).then(response => {
         if (response !== null) {
           let data: UserData = {
@@ -64,6 +64,16 @@ const UpdateProfile: React.FC = () => {
     }
   }
 
+  const validateUsername = (value: string) => {
+    if (value.length === 0) {
+        toast({
+            title: `Please select a valid username`,
+            status: 'error',
+            isClosable: true,
+        })
+    }
+  }
+
   return (
     <Flex align="center" justify="center">
       <Box bg="white" rounded="md" w={64}>
@@ -74,6 +84,9 @@ const UpdateProfile: React.FC = () => {
             profilePicture: existingData.profilePicture
           }}
           onSubmit={(values) => {
+            if (values.college == "") {
+              values.college = existingData.school;
+            }
             handleOnSubmit(values.college, values.username);
           }}
         >
@@ -113,6 +126,7 @@ const UpdateProfile: React.FC = () => {
                   id="username"
                   name="username"
                   placeholder={existingData.username}
+                  validate={validateUsername}
                 >
                 </Field>
                 <Button type="submit" width="full">

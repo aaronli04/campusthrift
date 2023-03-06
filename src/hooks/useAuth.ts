@@ -86,7 +86,7 @@ const useAuth = () => {
         // Add the user to the database
         await setDoc(doc(db, 'users', uid), userData);
         const body = JSON.stringify({ id: userData.id, school: userData.school });
-        fetch('http://localhost:8080/api/addUser', {
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/addUser`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: body

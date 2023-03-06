@@ -39,6 +39,14 @@ const UpdateProfile: React.FC = () => {
   })
 
   const handleOnSubmit = (school: string, username: string) => {
+    //if data is exact same as before don't do API call
+    if (school === existingData.school && username === existingData.username) {
+      toast({
+        title: `Success!`,
+        status: 'success',
+        isClosable: true,
+      })
+    }
     if (user && username.length > 0) {
       createUser(user).then(response => {
         if (response !== null) {

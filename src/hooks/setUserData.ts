@@ -2,6 +2,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/clientApp';
 import { UserData } from './types';
 
+
 // Converts a document from Firebase into a UserData object
 const setUserData = async (userData: UserData) => {
   const uploadData = {
@@ -17,7 +18,7 @@ const setUserData = async (userData: UserData) => {
   };
 
   const body = JSON.stringify({ id: userData.id, school: userData.school });
-  fetch('http://localhost:8080/api/updateUser', {
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND}/updateUser`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: body

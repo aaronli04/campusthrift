@@ -9,8 +9,6 @@ import {
   Input
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/clientApp';
 import setUserData from '../../hooks/setUserData';
 import { UserData } from '../../hooks/types'
 import useAuth from '../../hooks/useAuth';
@@ -23,20 +21,20 @@ import defaultData from '../utility/data/defaultUserData';
 
 const UpdateProfile: React.FC = () => {
   const universities = schools;
-  const [user, loading, error] = useAuthState(auth)
+  const { auth, token } = useAuth();
   const { createUser } = useAuth();
   const toast = useToast()
   const [existingData, setExistingData] = useState<UserData>(defaultData);
 
   useEffect(() => {
-    if (user) {
-      createUser(user).then(response => {
+    if (auth) {
+      createUser(auth).then(response => {
         if (response !== null) {
           setExistingData(response);
         }
       })
     }
-  })
+  }, [])
 
   const handleOnSubmit = (school: string, username: string) => {
     //if data is exact same as before don't do API call
@@ -46,9 +44,11 @@ const UpdateProfile: React.FC = () => {
         status: 'success',
         isClosable: true,
       })
+      return
     }
-    if (user && username.length > 0) {
-      createUser(user).then(response => {
+    
+    if (auth && username.length > 0) {
+      createUser(auth).then(response => {
         if (response !== null) {
           let data: UserData = {
             email: response.email,
@@ -61,7 +61,9 @@ const UpdateProfile: React.FC = () => {
             type: response.type,
             username: username
           }
-          setUserData(data)
+          if (token != '') {
+            setUserData(data, token)
+          }
           toast({
             title: `Success!`,
             status: 'success',
@@ -69,16 +71,6 @@ const UpdateProfile: React.FC = () => {
           })
         }
       });
-    }
-  }
-
-  const validateUsername = (value: string) => {
-    if (value.length === 0) {
-        toast({
-            title: `Please select a valid username`,
-            status: 'error',
-            isClosable: true,
-        })
     }
   }
 
@@ -93,7 +85,15 @@ const UpdateProfile: React.FC = () => {
           }}
           onSubmit={(values) => {
             if (values.college == "") {
-              values.college = existingData.school;
+              values.college = 'Vanderbilt';
+            }
+            if (values.username == "") {
+              toast({
+                title: `Please select a valid username`,
+                status: 'error',
+                isClosable: true,
+              })
+              return;
             }
             handleOnSubmit(values.college, values.username);
           }}
@@ -134,7 +134,6 @@ const UpdateProfile: React.FC = () => {
                   id="username"
                   name="username"
                   placeholder={existingData.username}
-                  validate={validateUsername}
                 >
                 </Field>
                 <Button type="submit" width="full">

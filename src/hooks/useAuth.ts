@@ -15,14 +15,21 @@ import {
 } from 'react-firebase-hooks/firestore';
 
 import { UserData } from './types'
-
 import { doc, DocumentReference, getDoc, setDoc } from 'firebase/firestore'
+import { useEffect, useState } from 'react';
 
 
 const useAuth = () => {
 
     const [authObj, authLoading] = useAuthState(auth);
     const [user, userLoading] = useDocumentData<UserData>(authObj && doc(db, 'users', authObj.uid) as DocumentReference<UserData>);
+    const [tokenID, setTokenID] = useState('');
+
+    useEffect(() => {
+        let token = authObj?.getIdToken(true).then((id) => {
+            setTokenID(id);
+        })
+    }, [])
 
     const signIn = async (email: string, password: string) => {
         await signInWithEmailAndPassword(auth, email, password);
@@ -41,6 +48,7 @@ const useAuth = () => {
 
         // Check if the user is already in the database
         const userDoc = await getDoc(doc(db, 'users', uid));
+
         // If the user is already in the database, return the user data
         if (userDoc.exists()) {
             const data = await userDoc.data();
@@ -58,7 +66,6 @@ const useAuth = () => {
                 listingsPurchased: data.listingsPurchased,
                 type: data.type
             };
-
             return userData;
         }
 
@@ -86,9 +93,17 @@ const useAuth = () => {
         // Add the user to the database
         await setDoc(doc(db, 'users', uid), userData);
         const body = JSON.stringify({ id: userData.id, school: userData.school });
+
+        //this is not safe -- correct later
+        if (!tokenID) {
+            return null;
+        }
         fetch(`${process.env.NEXT_PUBLIC_BACKEND}/addUser`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': tokenID
+            },
             body: body
         })
             .then(response => console.log(response.json()))
@@ -98,11 +113,12 @@ const useAuth = () => {
 
     return {
         auth: authObj,
+        token: tokenID,
         user: user,
         loading: authLoading || userLoading,
         createUser,
         signIn,
-        signOut,
+        signOut
     }
 }
 

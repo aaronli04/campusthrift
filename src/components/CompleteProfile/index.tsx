@@ -1,6 +1,5 @@
 import {
     VStack,
-    Text,
     Select,
     Button,
     Box,
@@ -9,35 +8,20 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik';
 import React, { useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/clientApp';
 import { UserData } from '../../hooks/types';
 import useAuth from '../../hooks/useAuth';
 import setUserData from '../../hooks/setUserData';
 import schools from '../utility/data/schools'
 import Router from 'next/router';
-import defaultData from '../utility/data/defaultUserData';
 
 const CompleteProfile: React.FC = () => {
     const universities = schools;
-    const [user, loading, error] = useAuthState(auth)
-    const { createUser } = useAuth();
+    const { auth, createUser, token } = useAuth();
     const toast = useToast()
-    const [existingData, setExistingData] = useState<UserData>(defaultData);
-
-    useEffect(() => {
-      if (user) {
-        createUser(user).then(response => {
-          if (response !== null) {
-            setExistingData(response);
-          }
-        })
-      }
-    })
 
     const handleOnSubmit = (school: string) => {
-        if (user && school.length > 0) {
-            createUser(user).then(response => {
+        if (auth && school.length > 0) {
+            createUser(auth).then(response => {
                 if (response !== null) {
                     let data: UserData = {
                         email: response.email,
@@ -50,7 +34,9 @@ const CompleteProfile: React.FC = () => {
                         type: response.type,
                         username: response.username
                     }
-                    setUserData(data)
+                    if (token !== '') {
+                        setUserData(data, token)
+                    }
                     toast({
                         title: `Success!`,
                         status: 'success',

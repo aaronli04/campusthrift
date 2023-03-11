@@ -7,7 +7,7 @@ import {
     useToast
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { UserData } from '../../hooks/types';
 import useAuth from '../../hooks/useAuth';
 import setUserData from '../../hooks/setUserData';

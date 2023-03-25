@@ -4,10 +4,12 @@ import {
     Button,
     Box,
     Flex,
-    useToast
+    useToast,
+    Input,
+    Text
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik';
-import React from 'react'
+import React, { useState } from 'react'
 import { FirebaseUser } from '../../hooks/types';
 import useAuth from '../../hooks/useAuth';
 import setUserData from '../../hooks/setUserData';
@@ -17,9 +19,18 @@ import Router from 'next/router';
 const CompleteProfile: React.FC = () => {
     const universities = schools;
     const { auth, createUser, token } = useAuth();
+    const [val, setVal] = useState("");
     const toast = useToast()
 
-    const handleOnSubmit = (school: string) => {
+    const handleOnSubmit = (school: string, phone: string) => {
+        if (val.length != 10) {
+            toast({
+                title: `Input a valid phone number.`,
+                status: 'error',
+                isClosable: true,
+            })
+            return;
+        }
         if (auth && school.length > 0) {
             createUser(auth).then(response => {
                 if (response !== null) {
@@ -29,7 +40,8 @@ const CompleteProfile: React.FC = () => {
                         profilePicture: response.profilePicture,
                         school: school,
                         type: response.type,
-                        username: response.username
+                        username: response.username,
+                        phone: val
                     }
                     if (token !== '') {
                         setUserData(data, token)
@@ -51,21 +63,29 @@ const CompleteProfile: React.FC = () => {
         }
     }
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const regex = /^[0-9\b]+$/;
+        if (e.target.value === "" || regex.test(e.target.value)) {
+            setVal(e.target.value);
+        }
+    };
+
     return (
         <Flex align="center" justify="center">
             <Box bg="white" rounded="md" w={64}>
                 <Formik
                     initialValues={{
                         college: 'Vanderbilt',
-                        profilePicture: ''
+                        profilePicture: '',
                     }}
                     onSubmit={(values) => {
-                        handleOnSubmit(values.college);
+                        handleOnSubmit(values.college, val);
                     }}
                 >
                     {({ handleSubmit, errors, touched }) => (
                         <form onSubmit={handleSubmit}>
-                            <VStack spacing={4} align="flex-start">
+                            <VStack spacing={4} align="center">
+                                <Text fontSize='2xl' fontWeight='semibold'>School</Text>
                                 <Field
                                     as={Select}
                                     id="college"
@@ -83,6 +103,14 @@ const CompleteProfile: React.FC = () => {
 
                                     }
                                 </Field>
+                                <Text fontSize='2xl' fontWeight='semibold'>Phone Number</Text>
+                                <Field
+                                    as={Input}
+                                    id="phone"
+                                    name="phone"
+                                    onChange={handleChange}
+                                    placeholder="Enter your phone number"
+                                />
                                 <Button type="submit" width="full">
                                     Submit
                                 </Button>

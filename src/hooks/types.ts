@@ -44,5 +44,6 @@ export interface FirebaseUser {
     username: string;
     profilePicture: string;
     school: string;
+    phone: string;
     type: "user" | "administrator";
 }

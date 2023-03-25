@@ -25,6 +25,7 @@ const UpdateProfile: React.FC = () => {
   const { createUser } = useAuth();
   const toast = useToast()
   const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
+  const [val, setVal] = useState("");
 
   useEffect(() => {
     if (auth) {
@@ -36,9 +37,18 @@ const UpdateProfile: React.FC = () => {
     }
   }, [])
 
-  const handleOnSubmit = (school: string, username: string) => {
+  const handleOnSubmit = (school: string, username: string, val: string) => {
+    if (val.length != 10) {
+      toast({
+        title: `Input a valid phone number.`,
+        status: 'error',
+        isClosable: true,
+      })
+      return;
+    }
+
     //if data is exact same as before don't do API call
-    if (school === existingData.school && username === existingData.username) {
+    if (school === existingData.school && username === existingData.username && val === existingData.phone) {
       toast({
         title: `Success!`,
         status: 'success',
@@ -46,7 +56,7 @@ const UpdateProfile: React.FC = () => {
       })
       return
     }
-    
+
     if (auth && username.length > 0) {
       createUser(auth).then(response => {
         if (response !== null) {
@@ -56,11 +66,13 @@ const UpdateProfile: React.FC = () => {
             profilePicture: response.profilePicture,
             school: school,
             type: response.type,
-            username: username
+            username: username,
+            phone: val
           }
           if (token != '') {
             setUserData(data, token)
           }
+          setExistingData(data)
           toast({
             title: `Success!`,
             status: 'success',
@@ -70,6 +82,13 @@ const UpdateProfile: React.FC = () => {
       });
     }
   }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex = /^[0-9\b]+$/;
+    if (e.target.value === "" || regex.test(e.target.value)) {
+      setVal(e.target.value);
+    }
+  };
 
   return (
     <Flex align="center" justify="center">
@@ -92,7 +111,7 @@ const UpdateProfile: React.FC = () => {
               })
               return;
             }
-            handleOnSubmit(values.college, values.username);
+            handleOnSubmit(values.college, values.username, val);
           }}
         >
           {({ handleSubmit, errors, touched }) => (
@@ -133,6 +152,19 @@ const UpdateProfile: React.FC = () => {
                   placeholder={existingData.username}
                 >
                 </Field>
+                <Text
+                  fontSize='xl'
+                  fontWeight='semibold'
+                >
+                  Phone Number
+                </Text>
+                <Field
+                  as={Input}
+                  id="phone"
+                  name="phone"
+                  onChange={handleChange}
+                  placeholder={existingData.phone}
+                />
                 <Button type="submit" width="full">
                   Submit
                 </Button>

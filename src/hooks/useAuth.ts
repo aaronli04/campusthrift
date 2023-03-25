@@ -61,7 +61,8 @@ const useAuth = () => {
                 username: data.username,
                 profilePicture: data.profilePicture,
                 school: data.school,
-                type: data.type
+                type: data.type,
+                phone: data.phone
             };
             return userData;
         }
@@ -72,6 +73,7 @@ const useAuth = () => {
         const username = user.displayName;
         const profilePicture = '';
         const school = '';
+        const phone = '';
         if (email == null || username == null) {
             return null;
         }
@@ -81,7 +83,8 @@ const useAuth = () => {
             username: username,
             profilePicture: profilePicture,
             school: school,
-            type: 'user'
+            type: 'user',
+            phone: phone
         };
 
         // Add the user to the database

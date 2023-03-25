@@ -11,7 +11,8 @@ const setUserData = async (userData: FirebaseUser, token: any) => {
     username: userData.username,
     profilePicture: userData.profilePicture,
     school: userData.school,
-    type: userData.type
+    type: userData.type,
+    phone: userData.phone
   };
 
   if (!token) {

@@ -6,7 +6,8 @@ const defaultData: FirebaseUser = {
     username: "",
     profilePicture: "",
     school: "",
-    type: "user"
+    type: "user",
+    phone: ""
 }
 
 export default defaultData

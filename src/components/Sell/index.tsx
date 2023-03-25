@@ -7,11 +7,11 @@ import ProfileBar from './ProfileBar'
 import ForSale from './ForSale'
 import PastSales from './PastSales'
 import useAuth from '../../hooks/useAuth'
-import { UserData } from '../../hooks/types'
+import { FirebaseUser } from '../../hooks/types'
 import defaultData from '../utility/data/defaultUserData'
 
 const Sell: React.FC = () => {
-  const [userData, setUserData] = useState<UserData>(defaultData)
+  const [userData, setUserData] = useState<FirebaseUser>(defaultData)
   const { auth, createUser } = useAuth();
 
   useEffect(() => {

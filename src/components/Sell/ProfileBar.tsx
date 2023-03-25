@@ -8,10 +8,10 @@ import {
     VStack
 } from '@chakra-ui/react'
 import React from 'react'
-import { UserData } from '../../hooks/types'
+import { FirebaseUser } from '../../hooks/types'
 
 interface Props {
-    user: UserData
+    user: FirebaseUser
 }
 
 const ProfileBar: React.FC<Props> = ({ user }) => {
@@ -29,9 +29,9 @@ const ProfileBar: React.FC<Props> = ({ user }) => {
                     </Text>
                 </VStack>
                 <Divider orientation='vertical' h={20} />
-                <Text>
+                {/* <Text>
                     {user.listingsSold.length} listings sold
-                </Text>
+                </Text> */}
             </HStack>
             <Button colorScheme='blackAlpha'>
                 <Link href='/sell/new' style={{ textDecoration: 'none' }}>

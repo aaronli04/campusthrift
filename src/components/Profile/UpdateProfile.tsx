@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import setUserData from '../../hooks/setUserData';
-import { UserData } from '../../hooks/types'
+import { FirebaseUser } from '../../hooks/types'
 import useAuth from '../../hooks/useAuth';
 import schools from '../utility/data/schools';
 import {
@@ -24,7 +24,7 @@ const UpdateProfile: React.FC = () => {
   const { auth, token } = useAuth();
   const { createUser } = useAuth();
   const toast = useToast()
-  const [existingData, setExistingData] = useState<UserData>(defaultData);
+  const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
 
   useEffect(() => {
     if (auth) {
@@ -50,12 +50,9 @@ const UpdateProfile: React.FC = () => {
     if (auth && username.length > 0) {
       createUser(auth).then(response => {
         if (response !== null) {
-          let data: UserData = {
+          let data: FirebaseUser = {
             email: response.email,
             id: response.id,
-            listingsPosted: response.listingsPosted,
-            listingsPurchased: response.listingsPurchased,
-            listingsSold: response.listingsSold,
             profilePicture: response.profilePicture,
             school: school,
             type: response.type,

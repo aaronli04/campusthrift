@@ -5,36 +5,36 @@ import {
     VStack
 } from "@chakra-ui/react"
 import Listing from '../Buy/Listing'
-import { UserData } from '../../hooks/types'
+import { FirebaseUser } from '../../hooks/types'
 
 interface Props {
-    user: UserData
+    user: FirebaseUser
 }
 
 const ForSale: React.FC<Props> = ( { user } ) => {
 
-    if (user.listingsPosted.length !== 0) {
-        return (
-            <VStack>
-                <Text
-                    fontSize='2xl'
-                    fontWeight='semibold'
-                >
-                    For Sale
-                </Text>
-                <SimpleGrid columns={4} spacing={5}>
-                    {
-                        user.listingsPosted.map((listing, index) => (
-                            <Listing
-                                key={index}
-                                listing={listing}
-                            />
-                        ))
-                    }
-                </SimpleGrid>
-            </VStack>
-        )
-    }
+    // if (user.listingsPosted.length !== 0) {
+    //     return (
+    //         <VStack>
+    //             <Text
+    //                 fontSize='2xl'
+    //                 fontWeight='semibold'
+    //             >
+    //                 For Sale
+    //             </Text>
+    //             <SimpleGrid columns={4} spacing={5}>
+    //                 {
+    //                     user.listingsPosted.map((listing, index) => (
+    //                         <Listing
+    //                             key={index}
+    //                             listing={listing}
+    //                         />
+    //                     ))
+    //                 }
+    //             </SimpleGrid>
+    //         </VStack>
+    //     )
+    // }
 
     return (
         <VStack>

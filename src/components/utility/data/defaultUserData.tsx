@@ -1,13 +1,10 @@
-import { UserData } from "../../../hooks/types"
+import { FirebaseUser } from "../../../hooks/types"
 
-const defaultData: UserData = {
+const defaultData: FirebaseUser = {
     email: "",
     id: "",
     username: "",
     profilePicture: "",
-    listingsPosted: [],
-    listingsPurchased: [],
-    listingsSold: [],
     school: "",
     type: "user"
 }

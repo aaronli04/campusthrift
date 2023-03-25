@@ -37,3 +37,12 @@ export interface UserData {
     listingsPurchased: Item[];
     type: "user" | "administrator";
 }
+
+export interface FirebaseUser {
+    email: string;
+    id: string;
+    username: string;
+    profilePicture: string;
+    school: string;
+    type: "user" | "administrator";
+}

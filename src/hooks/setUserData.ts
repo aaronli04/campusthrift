@@ -1,19 +1,16 @@
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase/clientApp';
-import { UserData } from './types';
+import { db } from '../firebase/clientApp';
+import { FirebaseUser } from './types';
 
 
 // Converts a document from Firebase into a UserData object
-const setUserData = async (userData: UserData, token: any) => {
+const setUserData = async (userData: FirebaseUser, token: any) => {
   const uploadData = {
     email: userData.email,
     id: userData.id,
     username: userData.username,
     profilePicture: userData.profilePicture,
     school: userData.school,
-    listingsPosted: userData.listingsPosted,
-    listingsSold: userData.listingsSold,
-    listingsPurchased: userData.listingsPurchased,
     type: userData.type
   };
 

@@ -1,5 +1,10 @@
 import React from 'react'
-import { HStack, Link, Text, VStack } from '@chakra-ui/react'
+import {
+    HStack, 
+    Link, 
+    Text,
+    VStack
+} from '@chakra-ui/react'
 import PageContainer from '../components/utility/PageContainer'
 import Layout from '../layouts/Layout'
 

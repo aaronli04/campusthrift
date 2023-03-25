@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik';
 import React from 'react'
-import { UserData } from '../../hooks/types';
+import { FirebaseUser } from '../../hooks/types';
 import useAuth from '../../hooks/useAuth';
 import setUserData from '../../hooks/setUserData';
 import schools from '../utility/data/schools'
@@ -23,12 +23,9 @@ const CompleteProfile: React.FC = () => {
         if (auth && school.length > 0) {
             createUser(auth).then(response => {
                 if (response !== null) {
-                    let data: UserData = {
+                    let data: FirebaseUser = {
                         email: response.email,
                         id: response.id,
-                        listingsPosted: response.listingsPosted,
-                        listingsPurchased: response.listingsPurchased,
-                        listingsSold: response.listingsSold,
                         profilePicture: response.profilePicture,
                         school: school,
                         type: response.type,

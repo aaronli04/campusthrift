@@ -14,7 +14,7 @@ import {
     useDocumentData
 } from 'react-firebase-hooks/firestore';
 
-import { UserData } from './types'
+import { FirebaseUser, UserData } from './types'
 import { doc, DocumentReference, getDoc, setDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react';
 
@@ -39,7 +39,7 @@ const useAuth = () => {
         await authSignOut(auth);
     }
 
-    const createUser = async (user: User | null): Promise<UserData | null> => {
+    const createUser = async (user: User | null): Promise<FirebaseUser | null> => {
         // If the user is not logged in, return null
         if (!user) return null;
 
@@ -55,15 +55,12 @@ const useAuth = () => {
 
             if (data == undefined) return null;
 
-            const userData: UserData = {
+            const userData: FirebaseUser = {
                 email: data.email,
                 id: data.id,
                 username: data.username,
                 profilePicture: data.profilePicture,
                 school: data.school,
-                listingsPosted: data.listingsPosted,
-                listingsSold: data.listingsSold,
-                listingsPurchased: data.listingsPurchased,
                 type: data.type
             };
             return userData;
@@ -78,15 +75,12 @@ const useAuth = () => {
         if (email == null || username == null) {
             return null;
         }
-        const userData: UserData = {
+        const userData: FirebaseUser = {
             email: email,
             id: uid,
             username: username,
             profilePicture: profilePicture,
             school: school,
-            listingsPosted: [],
-            listingsSold: [],
-            listingsPurchased: [],
             type: 'user'
         };
 

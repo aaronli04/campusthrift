@@ -1,15 +1,20 @@
 import React from 'react'
-import {
-  Text
-} from '@chakra-ui/react'
 import Layout from '../../layouts/Layout'
+import CreateListing from '../../components/Sell/CreateListing'
+import PageContainer from '../../components/utility/PageContainer'
+import Head from 'next/head'
 
 const NewListing = () => {
   return (
     <Layout>
-      <Text>
-        Hello
-      </Text>
+      <PageContainer>
+        <Head>
+          <title>
+            Campus Thrift | Add Listing
+          </title>
+        </Head>
+        <CreateListing />
+      </PageContainer>
     </Layout>
 
   )

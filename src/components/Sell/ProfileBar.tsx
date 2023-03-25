@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { FirebaseUser } from '../../hooks/types'
+import NewListingButton from './CreateListing/Button'
 
 interface Props {
     user: FirebaseUser
@@ -33,11 +34,7 @@ const ProfileBar: React.FC<Props> = ({ user }) => {
                     {user.listingsSold.length} listings sold
                 </Text> */}
             </HStack>
-            <Button colorScheme='blackAlpha'>
-                <Link href='/sell/new' style={{ textDecoration: 'none' }}>
-                    + New Listing
-                </Link>
-            </Button>
+            <NewListingButton />
         </HStack>
     )
 }

@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
 import currentListings from "../../../components/utility/data/listingsData/currentListings";
-import categories from "../../../components/utility/data/categoryData";
+import categories from "../../../components/utility/data/categories";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import { Item } from "../../../hooks/types";

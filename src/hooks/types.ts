@@ -1,3 +1,5 @@
+import internal from "stream";
+
 export interface Item {
     title: string;
     seller: UserData;
@@ -46,4 +48,14 @@ export interface FirebaseUser {
     school: string;
     phone: string;
     type: "user" | "administrator";
+}
+
+export interface Product {
+    id: string;
+    seller_id: string;
+    name: string;
+    description: string;
+    price: number;
+    category_id: number;
+    photo: string;
 }

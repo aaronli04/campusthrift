@@ -19,11 +19,11 @@ import Router from 'next/router';
 const CompleteProfile: React.FC = () => {
     const universities = schools;
     const { auth, createUser, token } = useAuth();
-    const [val, setVal] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const toast = useToast()
 
     const handleOnSubmit = (school: string, phone: string) => {
-        if (val.length != 10) {
+        if (phoneNumber.length != 10) {
             toast({
                 title: `Input a valid phone number.`,
                 status: 'error',
@@ -41,7 +41,7 @@ const CompleteProfile: React.FC = () => {
                         school: school,
                         type: response.type,
                         username: response.username,
-                        phone: val
+                        phone: phoneNumber
                     }
                     if (token !== '') {
                         setUserData(data, token)
@@ -66,7 +66,7 @@ const CompleteProfile: React.FC = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9\b]+$/;
         if (e.target.value === "" || regex.test(e.target.value)) {
-            setVal(e.target.value);
+            setPhoneNumber(e.target.value);
         }
     };
 
@@ -79,7 +79,7 @@ const CompleteProfile: React.FC = () => {
                         profilePicture: '',
                     }}
                     onSubmit={(values) => {
-                        handleOnSubmit(values.college, val);
+                        handleOnSubmit(values.college, phoneNumber);
                     }}
                 >
                     {({ handleSubmit, errors, touched }) => (

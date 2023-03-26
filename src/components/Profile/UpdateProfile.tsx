@@ -25,7 +25,7 @@ const UpdateProfile: React.FC = () => {
   const { createUser } = useAuth();
   const toast = useToast()
   const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
-  const [val, setVal] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     if (auth) {
@@ -37,8 +37,8 @@ const UpdateProfile: React.FC = () => {
     }
   }, [])
 
-  const handleOnSubmit = (school: string, username: string, val: string) => {
-    if (val.length != 10) {
+  const handleOnSubmit = (school: string, username: string, phoneNumber: string) => {
+    if (phoneNumber.length != 10) {
       toast({
         title: `Input a valid phone number.`,
         status: 'error',
@@ -48,7 +48,7 @@ const UpdateProfile: React.FC = () => {
     }
 
     //if data is exact same as before don't do API call
-    if (school === existingData.school && username === existingData.username && val === existingData.phone) {
+    if (school === existingData.school && username === existingData.username && phoneNumber === existingData.phone) {
       toast({
         title: `Success!`,
         status: 'success',
@@ -67,7 +67,7 @@ const UpdateProfile: React.FC = () => {
             school: school,
             type: response.type,
             username: username,
-            phone: val
+            phone: phoneNumber
           }
           if (token != '') {
             setUserData(data, token)
@@ -86,7 +86,7 @@ const UpdateProfile: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9\b]+$/;
     if (e.target.value === "" || regex.test(e.target.value)) {
-      setVal(e.target.value);
+      setPhoneNumber(e.target.value);
     }
   };
 
@@ -111,7 +111,7 @@ const UpdateProfile: React.FC = () => {
               })
               return;
             }
-            handleOnSubmit(values.college, values.username, val);
+            handleOnSubmit(values.college, values.username, phoneNumber);
           }}
         >
           {({ handleSubmit, errors, touched }) => (

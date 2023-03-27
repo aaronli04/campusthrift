@@ -7,7 +7,9 @@ import {
   Input,
   Button,
   Textarea,
-  useToast
+  useToast,
+  HStack,
+  Icon
 } from '@chakra-ui/react';
 import {
   Field,
@@ -15,7 +17,8 @@ import {
 } from 'formik';
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { FirebaseUser, Product } from '../../../hooks/types';
+import { Product } from '../../../hooks/types';
+import { FaDollarSign } from 'react-icons/fa'
 import Router from 'next/router';
 import useAuth from '../../../hooks/useAuth';
 import categories from '../../utility/data/categories';
@@ -40,7 +43,7 @@ const CreateListing: React.FC = () => {
 
   const handleOnSubmit = (categoryId: number, name: string, condition: string, description: string,
     price: string, photo: string) => {
-    if (isNaN(parseInt(price)) || parseInt(price) < 0) {
+    if (isNaN(parseFloat(price)) || parseFloat(price) < 0) {
       toast({
         title: `Input a valid price.`,
         status: 'error',
@@ -57,7 +60,7 @@ const CreateListing: React.FC = () => {
             name: name,
             description: description,
             condition: condition,
-            price: parseInt(price),
+            price: parseFloat(price),
             category_id: categoryId,
             photo: photo
           }
@@ -181,12 +184,17 @@ const CreateListing: React.FC = () => {
                 >
                   Price
                 </Text>
-                <Field
-                  as={Input}
-                  id='Price'
-                  name='Price'
-                  onChange={handleChange}
-                ></Field>
+                <HStack
+                  spacing={0}
+                  border='1px'
+                  borderColor='blackAlpha.200'
+                  borderRadius='md'
+                  w='100%'
+                >
+                  <Icon as={FaDollarSign} />
+                  <Input onChange={handleChange} border='hidden' padding={0} focusBorderColor='transparent'/>
+                </HStack>
+
                 <Text
                   fontSize='xl'
                   fontWeight='semibold'

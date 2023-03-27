@@ -29,7 +29,6 @@ const CreateListing: React.FC = () => {
 
   const toast = useToast()
   const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState(0);
   const [description, setDescription] = useState("");
   const { auth, createUser } = useAuth();
   const [token, setToken] = useState('')
@@ -41,7 +40,7 @@ const CreateListing: React.FC = () => {
     })
   })
 
-  const handleOnSubmit = (categoryId: number, name: string, condition: string, description: string,
+  const handleOnSubmit = (category_name: string, name: string, condition: string, description: string,
     price: string, photo: string) => {
     if (isNaN(parseFloat(price)) || parseFloat(price) < 0) {
       toast({
@@ -61,7 +60,7 @@ const CreateListing: React.FC = () => {
             description: description,
             condition: condition,
             price: parseFloat(price),
-            category_id: categoryId,
+            category_name: category_name,
             photo: photo
           }
           if (token !== '') {
@@ -92,24 +91,19 @@ const CreateListing: React.FC = () => {
     setPrice(e.target.value);
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const index = e.target.selectedIndex;
-    setCategoryId(index);
-  };
-
   return (
     <Flex align="center" justify="center">
       <Box bg="white" rounded="md">
         <Formik
           initialValues={{
-            category: 0,
+            category: categories[0],
             name: '',
             condition: conditions[0],
             price: '',
             photo: 'https://placehold.jp/250x250.png'
           }}
           onSubmit={(values) => {
-            handleOnSubmit(categoryId, values.name, values.condition, description,
+            handleOnSubmit(values.category, values.name, values.condition, description,
               price, values.photo);
           }}
         >
@@ -137,7 +131,7 @@ const CreateListing: React.FC = () => {
                     categories.map((category, index) => (
                       <option
                         key={index}
-                        value={index}
+                        value={category}
                       >
                         {category}
                       </option>

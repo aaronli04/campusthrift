@@ -4,10 +4,8 @@ const categories: string[] = [
     "Lamps",
     "Fans",
     "Monitors and Television",
-    "Math Textbooks",
-    "Science Textbooks",
-    "Yeezy Shoes",
-    "Nike Shoes"
+    "Textbooks",
+    "Shoes",
 ]
 
 export default categories

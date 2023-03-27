@@ -10,7 +10,7 @@ const useBuy = () => {
             description: productData.description,
             condition: productData.condition,
             price: productData.price,
-            category_id: productData.category_id,
+            category_name: productData.category_name,
             photo: productData.photo
         };
 
@@ -25,7 +25,7 @@ const useBuy = () => {
             description: productData.description,
             condition: productData.condition,
             price: productData.price,
-            category_id: productData.category_id,
+            category_name: productData.category_name,
             photo: productData.photo
         });
         fetch(`${process.env.NEXT_PUBLIC_BACKEND}/addListing`, {

@@ -57,6 +57,6 @@ export interface Product {
     description: string;
     condition: string;
     price: number;
-    category_id: number;
+    category_name: string;
     photo: string;
 }

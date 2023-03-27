@@ -21,8 +21,7 @@ import defaultData from '../utility/data/defaultUserData';
 
 const UpdateProfile: React.FC = () => {
   const universities = schools;
-  const { auth, token } = useAuth();
-  const { createUser } = useAuth();
+  const { auth, token, createUser } = useAuth();
   const toast = useToast()
   const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
   const [phoneNumber, setPhoneNumber] = useState("");

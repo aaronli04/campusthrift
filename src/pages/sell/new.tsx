@@ -5,6 +5,7 @@ import PageContainer from '../../components/utility/PageContainer'
 import Head from 'next/head'
 
 const NewListing = () => {
+  
   return (
     <Layout>
       <PageContainer>

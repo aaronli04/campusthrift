@@ -1,9 +1,7 @@
 import {
     Avatar,
-    Button,
     Divider,
     HStack,
-    Link,
     Text,
     VStack
 } from '@chakra-ui/react'

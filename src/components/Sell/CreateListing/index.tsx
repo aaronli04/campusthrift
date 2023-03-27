@@ -13,67 +13,73 @@ import {
   Field,
   Formik
 } from 'formik';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { Product } from '../../../hooks/types';
+import { FirebaseUser, Product } from '../../../hooks/types';
 import Router from 'next/router';
 import useAuth from '../../../hooks/useAuth';
-import useDeviceSize from '../../../hooks/useDeviceSize';
 import categories from '../../utility/data/categories';
 import conditions from '../../utility/data/conditions';
+import useBuy from '../../../hooks/useBuy';
 
-const CreateListing = () => {
+const CreateListing: React.FC = () => {
 
   const toast = useToast()
-  const [width, height] = useDeviceSize();
   const [price, setPrice] = useState("");
   const [categoryId, setCategoryId] = useState(0);
   const [description, setDescription] = useState("");
-  const { auth, token, createUser } = useAuth();
+  const { auth, createUser } = useAuth();
+  const [token, setToken] = useState('')
+  const { addListing } = useBuy();
 
+  useEffect(() => {
+    let token = auth?.getIdToken(true).then((id) => {
+      setToken(id)
+    })
+  })
 
   const handleOnSubmit = (categoryId: number, name: string, condition: string, description: string,
     price: string, photo: string) => {
     if (isNaN(parseInt(price)) || parseInt(price) < 0) {
-        toast({
-            title: `Input a valid price.`,
-            status: 'error',
-            isClosable: true,
-        })
-        return;
+      toast({
+        title: `Input a valid price.`,
+        status: 'error',
+        isClosable: true,
+      })
+      return;
     }
     if (auth && name.length > 0 && condition.length > 0 && description.length > 0 && photo.length > 0) {
-        createUser(auth).then(response => {
-            if (response !== null) {
-                let data: Product = {
-                  id: uuidv4(),
-                  seller_id: response.id,
-                  name: name,
-                  description: description,
-                  price: parseInt(price),
-                  category_id: categoryId,
-                  photo: photo
-                }
-                if (token !== '') {
-                  console.log(data)
-                  //hook to add item
-                }
-                toast({
-                    title: `Success!`,
-                    status: 'success',
-                    isClosable: true,
-                })
-                Router.push('/sell')
-            }
-        });
-    } else {
-        toast({
-            title: `Select valid inputs.`,
-            status: 'error',
+      createUser(auth).then(response => {
+        if (response !== null) {
+          let data: Product = {
+            id: uuidv4(),
+            seller_id: response.id,
+            name: name,
+            description: description,
+            condition: condition,
+            price: parseInt(price),
+            category_id: categoryId,
+            photo: photo
+          }
+          if (token !== '') {
+            addListing(data, token)
+          }
+          toast({
+            title: `Success!`,
+            status: 'success',
             isClosable: true,
-        })
+          })
+          Router.push('/sell')
+        }
+      });
+    } else {
+      toast({
+        title: `Select valid inputs.`,
+        status: 'error',
+        isClosable: true,
+      })
     }
-}
+  }
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);

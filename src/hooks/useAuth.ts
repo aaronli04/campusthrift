@@ -29,7 +29,7 @@ const useAuth = () => {
         let token = authObj?.getIdToken(true).then((id) => {
             setTokenID(id);
         })
-    }, [])
+    }, [tokenID])
 
     const signIn = async (email: string, password: string) => {
         await signInWithEmailAndPassword(auth, email, password);

@@ -4,7 +4,9 @@ import { FirebaseUser } from './types';
 
 
 // Converts a document from Firebase into a UserData object
-const setUserData = async (userData: FirebaseUser, token: any) => {
+const setUserData = async (userData: FirebaseUser, t: any) => {
+  const token = await Promise.resolve(t);
+  if (token === '') return;
   const uploadData = {
     email: userData.email,
     id: userData.id,

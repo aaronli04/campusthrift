@@ -23,13 +23,6 @@ const useAuth = () => {
 
     const [authObj, authLoading] = useAuthState(auth);
     const [user, userLoading] = useDocumentData<UserData>(authObj && doc(db, 'users', authObj.uid) as DocumentReference<UserData>);
-    const [tokenID, setTokenID] = useState('');
-
-    useEffect(() => {
-        let token = authObj?.getIdToken(true).then((id) => {
-            setTokenID(id);
-        })
-    }, [tokenID])
 
     const signIn = async (email: string, password: string) => {
         await signInWithEmailAndPassword(auth, email, password);
@@ -90,7 +83,7 @@ const useAuth = () => {
         // Add the user to the database
         await setDoc(doc(db, 'users', uid), userData);
         const body = JSON.stringify({ id: userData.id, school: userData.school });
-
+        const tokenID = await user.getIdToken();
         //this is not safe -- correct later
         if (!tokenID) {
             return null;
@@ -110,7 +103,6 @@ const useAuth = () => {
 
     return {
         auth: authObj,
-        token: tokenID,
         user: user,
         loading: authLoading || userLoading,
         createUser,

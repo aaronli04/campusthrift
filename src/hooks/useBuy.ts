@@ -2,7 +2,9 @@ import { Item, Product } from "./types";
 
 const useBuy = () => {
 
-    const addListing = async (productData: Product, token: any) => {
+    const addListing = async (productData: Product, t: any) => {
+        const token = await Promise.resolve(t);
+        if (token === '') return;
         const uploadData = {
             id: productData.id,
             seller_id: productData.seller_id,

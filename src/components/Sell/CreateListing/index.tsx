@@ -31,17 +31,12 @@ const CreateListing: React.FC = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const { auth, createUser } = useAuth();
-  const [token, setToken] = useState('')
   const { addListing } = useBuy();
-
-  useEffect(() => {
-    let token = auth?.getIdToken(true).then((id) => {
-      setToken(id)
-    })
-  })
 
   const handleOnSubmit = (category_name: string, name: string, condition: string, description: string,
     price: string, photo: string) => {
+     if (!auth) return;
+    const token = auth.getIdToken();
     if (isNaN(parseFloat(price)) || parseFloat(price) < 0) {
       toast({
         title: `Input a valid price.`,
@@ -63,9 +58,7 @@ const CreateListing: React.FC = () => {
             category_name: category_name,
             photo: photo
           }
-          if (token !== '') {
             addListing(data, token)
-          }
           toast({
             title: `Success!`,
             status: 'success',

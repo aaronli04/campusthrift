@@ -21,7 +21,7 @@ import defaultData from '../utility/data/defaultUserData';
 
 const UpdateProfile: React.FC = () => {
   const universities = schools;
-  const { auth, token, createUser } = useAuth();
+  const { auth, createUser } = useAuth();
   const toast = useToast()
   const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -37,6 +37,8 @@ const UpdateProfile: React.FC = () => {
   }, [])
 
   const handleOnSubmit = (school: string, username: string, phoneNumber: string) => {
+    if (!auth) return;
+    const token = auth.getIdToken();
     if (phoneNumber.length != 10) {
       toast({
         title: `Input a valid phone number.`,
@@ -68,9 +70,7 @@ const UpdateProfile: React.FC = () => {
             username: username,
             phone: phoneNumber
           }
-          if (token != '') {
-            setUserData(data, token)
-          }
+          setUserData(data, token)
           setExistingData(data)
           toast({
             title: `Success!`,

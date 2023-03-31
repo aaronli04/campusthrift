@@ -3,7 +3,7 @@ import {
     GetStaticProps,
     InferGetStaticPropsType
 } from "next";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
     HStack,
     Text,
@@ -27,13 +27,12 @@ import {
     ModalBody,
     ModalFooter
 } from '@chakra-ui/react'
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
-import CommentFormat from "../../../components/utility/Comments/CommentFormat"
 import { Comment, Item } from "../../../hooks/types";
 import CommentButton from "../../../components/utility/Comments/CommentButton";
+import CommentFormat from "../../../components/utility/Comments/CommentFormat";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     let items:Item[] = []
@@ -190,7 +189,7 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                 </Text>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <CommentButton />
+                                                <CommentButton id={item.listingID}/>
                                             </ModalFooter>
                                         </ModalContent>
                                     </Modal>
@@ -261,16 +260,16 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                                         <ModalHeader>Comments</ModalHeader>
                                         <ModalCloseButton />
                                         <ModalBody>
-                                            {/* <VStack alignItems='flex-start'>
+                                            <VStack alignItems='flex-start'>
                                                 {
                                                     item.comments.map((comment: Comment, index: number) => (
                                                         <CommentFormat comment={comment} key={index} />
                                                     ))
                                                 }
-                                            </VStack> */}
+                                            </VStack>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <CommentButton />
+                                            <CommentButton id={item.listingID}/>
                                         </ModalFooter>
                                     </ModalContent>
                                 </Modal>

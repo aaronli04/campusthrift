@@ -18,7 +18,6 @@ export interface Comment {
     datePosted: string;
     commentBody: string;
     likes: number;
-    dislikes: number;
 }
 
 export interface UserData {
@@ -52,4 +51,12 @@ export interface Product {
     price: number;
     category_name: string;
     photo: string;
+}
+
+export interface SupabaseComment {
+    id: string,
+    post_id: string,
+    poster_id: string,
+    body: string,
+    likes: number,
 }

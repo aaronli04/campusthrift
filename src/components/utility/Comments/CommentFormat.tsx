@@ -24,7 +24,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
         <Text>{comment.commentBody}</Text>
         <HStack spacing={0}>
           <IconButton aria-label='Likes' icon={<ChevronUpIcon/>} variant='unstyled' />
-          <Text>{comment.likes - comment.dislikes}</Text>
+          <Text>{comment.likes}</Text>
           <IconButton aria-label='Dislikes' icon={<ChevronDownIcon/>} variant='unstyled'/>
         </HStack>
       </VStack>

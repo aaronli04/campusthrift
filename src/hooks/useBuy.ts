@@ -1,9 +1,30 @@
-import { Item, Product } from "./types";
+import { Item, Product, SupabaseComment } from "./types";
 import useSearch from "./useSearch";
 
 const useBuy = () => {
 
     const { getFirebaseUserByID } = useSearch();
+
+    const addComment = async (comment: SupabaseComment, t: any) => {
+        const token = await Promise.resolve(t);
+        if (token === '') return;
+        const body = JSON.stringify({
+            id: comment.id,
+            post_id: comment.post_id,
+            poster_id: comment.poster_id,
+            comment_body: comment.body,
+            likes: comment.likes,
+        });
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/addComment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: body
+        })
+        .then(response => console.log(response.json()))
+    }
 
     const addListing = async (productData: Product, t: any) => {
         const token = await Promise.resolve(t);
@@ -42,19 +63,19 @@ const useBuy = () => {
             },
             body: body
         })
-        .then(response => console.log(response.json()))
+            .then(response => console.log(response.json()))
     };
 
-    const showAllListings = async() => {
+    const showAllListings = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-        if (response.status === 200) { 
+        if (response.status === 200) {
             const data = await response.json();
-            let items:Item[] = []
+            let items: Item[] = []
             for (let i = 0; i < data.length; ++i) {
                 const item: Item = {
                     title: data[i].name,
@@ -78,7 +99,8 @@ const useBuy = () => {
 
     return {
         showAllListings: showAllListings,
-        addListing: addListing
+        addListing: addListing,
+        addComment: addComment
     }
 }
 export default useBuy

@@ -1,8 +1,4 @@
-import {
-    GetStaticPaths,
-    GetStaticProps,
-    InferGetStaticPropsType
-} from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import React, { useEffect, useState } from 'react'
 import {
     HStack,
@@ -30,78 +26,34 @@ import {
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
-import { Item, SupabaseComment } from "../../../hooks/types";
+import { Product, SupabaseComment } from "../../../hooks/types";
 import CommentButton from "../../../components/utility/Comments/CommentButton";
 import CommentFormat from "../../../components/utility/Comments/CommentFormat";
 import Loading from "../../../components/Loading";
 import useComments from "../../../hooks/useComments";
+import { useRouter } from "next/router";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    let items: Item[] = []
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
+export const getServerSideProps = async ({ params }: GetServerSidePropsContext<{ listingID: string }>) => {
+    const listingID = params?.listingID;
+    if (!listingID) {
+        return {
+            notFound: true
+        }
+    }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     })
-    if (response.status === 200) {
-        const data = await response.json();
-        for (let i = 0; i < data.length; ++i) {
-            const item: Item = {
-                title: data[i].name,
-                seller: data[i].seller_id,
-                listingID: data[i].id,
-                condition: data[i].condition,
-                description: data[i].description,
-                category: data[i].category_name,
-                price: data[i].price,
-                datePosted: data[i].created_at,
-                photo: data[i].photo,
-                comments: [],
-            }
-            items.push(item);
-        }
-    }
-    const paths = items.map((listing) => ({
-        params: { listingID: listing.listingID }
-    }))
+    const items = await response.json();
 
-    return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-    let items: Item[] = []
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    if (response.status === 200) {
-        const data = await response.json();
-        for (let i = 0; i < data.length; ++i) {
-            let item: Item = {
-                title: data[i].name,
-                seller: data[i].seller_id,
-                listingID: data[i].id,
-                condition: data[i].condition,
-                description: data[i].description,
-                category: data[i].category_name,
-                price: data[i].price,
-                datePosted: data[i].created_at,
-                photo: data[i].photo,
-                comments: [],
-            }
-            items.push(item);
-        }
-    }
-    const listingID = params?.listingID
-    const item = items.find((data) => data.listingID === listingID)
+    const item = await items.find((data: Product) => data.id === listingID)
 
     return { props: { item } }
 }
 
-const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { getCommentsByPostID } = useComments()
     const [comments, setComments] = useState<SupabaseComment[]>([]);
@@ -116,6 +68,11 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
     }, [item.listingID]);
     const imageWidth = 600
     const imageHeight = 800
+    const router = useRouter();
+    
+    if (router.isFallback) {
+      return <div>Loading...</div>;
+    }
 
     if (comments.length == 0 && commentsLoaded) {
         return (

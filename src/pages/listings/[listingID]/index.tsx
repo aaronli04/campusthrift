@@ -61,7 +61,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
             items.push(item);
         }
     }
-
     const paths = items.map((listing) => ({
         params: { listingID: listing.listingID }
     }))
@@ -80,7 +79,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (response.status === 200) { 
         const data = await response.json();
         for (let i = 0; i < data.length; ++i) {
-            const item: Item = {
+            let item: Item = {
                 title: data[i].name,
                 seller: data[i].seller_id,
                 listingID: data[i].id,
@@ -92,6 +91,26 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 photo: data[i].photo,
                 comments: [],
             }
+            let comments:Comment[] = [];
+
+            const body = JSON.stringify({ id: params?.listingID });
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/getCommentsByPostID`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: body
+            })
+            if (response.status === 200) {
+                const data = await response.json();
+                if (data.comments != undefined) {
+                    const commentData = data.comments as Comment[];
+                    comments = commentData;
+                }
+            }
+            
+            item.comments = comments;
             items.push(item);
         }
     }
@@ -103,7 +122,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
 
     const imageWidth = 600
     const imageHeight = 800
@@ -243,13 +261,13 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                                         <ModalHeader>Comments</ModalHeader>
                                         <ModalCloseButton />
                                         <ModalBody>
-                                            <VStack alignItems='flex-start'>
+                                            {/* <VStack alignItems='flex-start'>
                                                 {
                                                     item.comments.map((comment: Comment, index: number) => (
                                                         <CommentFormat comment={comment} key={index} />
                                                     ))
                                                 }
-                                            </VStack>
+                                            </VStack> */}
                                         </ModalBody>
                                         <ModalFooter>
                                             <CommentButton />

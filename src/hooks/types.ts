@@ -57,6 +57,6 @@ export interface SupabaseComment {
     id: string,
     post_id: string,
     poster_id: string,
-    body: string,
+    comment_body: string,
     likes: number,
 }

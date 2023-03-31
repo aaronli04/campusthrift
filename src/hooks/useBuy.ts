@@ -1,30 +1,9 @@
-import { Item, Product, SupabaseComment } from "./types";
+import { Item, Product } from "./types";
 import useSearch from "./useSearch";
 
 const useBuy = () => {
 
     const { getFirebaseUserByID } = useSearch();
-
-    const addComment = async (comment: SupabaseComment, t: any) => {
-        const token = await Promise.resolve(t);
-        if (token === '') return;
-        const body = JSON.stringify({
-            id: comment.id,
-            post_id: comment.post_id,
-            poster_id: comment.poster_id,
-            comment_body: comment.body,
-            likes: comment.likes,
-        });
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/addComment`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            },
-            body: body
-        })
-        .then(response => console.log(response.json()))
-    }
 
     const addListing = async (productData: Product, t: any) => {
         const token = await Promise.resolve(t);
@@ -100,7 +79,6 @@ const useBuy = () => {
     return {
         showAllListings: showAllListings,
         addListing: addListing,
-        addComment: addComment
     }
 }
 export default useBuy

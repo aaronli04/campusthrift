@@ -3,7 +3,7 @@ import {
     GetStaticProps,
     InferGetStaticPropsType
 } from "next";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     HStack,
     Text,
@@ -30,19 +30,21 @@ import {
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
-import { Comment, Item } from "../../../hooks/types";
+import { Item, SupabaseComment } from "../../../hooks/types";
 import CommentButton from "../../../components/utility/Comments/CommentButton";
 import CommentFormat from "../../../components/utility/Comments/CommentFormat";
+import Loading from "../../../components/Loading";
+import useComments from "../../../hooks/useComments";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    let items:Item[] = []
+    let items: Item[] = []
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     })
-    if (response.status === 200) { 
+    if (response.status === 200) {
         const data = await response.json();
         for (let i = 0; i < data.length; ++i) {
             const item: Item = {
@@ -68,14 +70,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    let items:Item[] = []
+    let items: Item[] = []
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     })
-    if (response.status === 200) { 
+    if (response.status === 200) {
         const data = await response.json();
         for (let i = 0; i < data.length; ++i) {
             let item: Item = {
@@ -90,26 +92,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 photo: data[i].photo,
                 comments: [],
             }
-            let comments:Comment[] = [];
-
-            const body = JSON.stringify({ id: params?.listingID });
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/getCommentsByPostID`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: body
-            })
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data.comments != undefined) {
-                    const commentData = data.comments as Comment[];
-                    comments = commentData;
-                }
-            }
-            
-            item.comments = comments;
             items.push(item);
         }
     }
@@ -121,11 +103,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const { getCommentsByPostID } = useComments()
+    const [comments, setComments] = useState<SupabaseComment[]>([]);
+    const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false);
+    useEffect(() => {
+        async function fetchData() {
+            const comments = await getCommentsByPostID(item.listingID);
+            setComments(comments)
+            setCommentsLoaded(true)
+        }
+        fetchData();
+    }, [item.listingID]);
     const imageWidth = 600
     const imageHeight = 800
 
-    if (item.comments.length == 0) {
+    if (comments.length == 0 && commentsLoaded) {
         return (
             <Layout>
                 <PageContainer>
@@ -189,7 +181,7 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                 </Text>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <CommentButton id={item.listingID}/>
+                                                <CommentButton id={item.listingID} />
                                             </ModalFooter>
                                         </ModalContent>
                                     </Modal>
@@ -202,84 +194,89 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
         );
     }
 
-    return (
-        <Layout>
-            <PageContainer>
-                <Head>
-                    <title>
-                        Campus Thrift | Buy
-                    </title>
-                </Head>
-                <VStack left={30}>
-                    <HStack spacing={30}>
-                        <HStack>
-                            <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
+    if (comments.length !== 0 && commentsLoaded) {
+        return (
+            <Layout>
+                <PageContainer>
+                    <Head>
+                        <title>
+                            Campus Thrift | Buy
+                        </title>
+                    </Head>
+                    <VStack left={30}>
+                        <HStack spacing={30}>
+                            <HStack>
+                                <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
+                            </HStack>
+                            <Card w={400}>
+                                <CardHeader>
+                                    <Heading size='md'>Item Details</Heading>
+                                </CardHeader>
+                                <CardBody>
+                                    <Stack divider={<StackDivider />} spacing='4'>
+                                        <Box>
+                                            <Heading size='sm' textTransform='uppercase'>
+                                                {item.title}
+                                            </Heading>
+                                        </Box>
+                                        <Box>
+                                            <Heading size='xs' textTransform='uppercase'>
+                                                Condition
+                                            </Heading>
+                                            <Text pt='2' fontSize='sm'>
+                                                {item.condition}
+                                            </Text>
+                                        </Box>
+                                        <Box>
+                                            <Heading size='xs' textTransform='uppercase'>
+                                                Description
+                                            </Heading>
+                                            <Text pt='2' fontSize='sm'>
+                                                {item.description}
+                                            </Text>
+                                        </Box>
+                                        <Box>
+                                            <Heading size='sm' textTransform='uppercase'>
+                                                Price
+                                            </Heading>
+                                            <Text pt='2' fontSize='md'>
+                                                ${item.price}
+                                            </Text>
+                                        </Box>
+                                    </Stack>
+                                </CardBody>
+                                <CardFooter>
+                                    <Button onClick={onOpen}>See Comments</Button>
+                                    <Modal isOpen={isOpen} onClose={onClose}>
+                                        <ModalOverlay />
+                                        <ModalContent>
+                                            <ModalHeader>Comments</ModalHeader>
+                                            <ModalCloseButton />
+                                            <ModalBody>
+                                                <VStack alignItems='flex-start'>
+                                                    {
+                                                        comments.map((comment: SupabaseComment, index: number) => (
+                                                            <CommentFormat comment={comment} key={index} />
+                                                        ))
+                                                    }
+                                                </VStack>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <CommentButton id={item.listingID} />
+                                            </ModalFooter>
+                                        </ModalContent>
+                                    </Modal>
+                                </CardFooter>
+                            </Card>
                         </HStack>
-                        <Card w={400}>
-                            <CardHeader>
-                                <Heading size='md'>Item Details</Heading>
-                            </CardHeader>
-                            <CardBody>
-                                <Stack divider={<StackDivider />} spacing='4'>
-                                    <Box>
-                                        <Heading size='sm' textTransform='uppercase'>
-                                            {item.title}
-                                        </Heading>
-                                    </Box>
-                                    <Box>
-                                        <Heading size='xs' textTransform='uppercase'>
-                                            Condition
-                                        </Heading>
-                                        <Text pt='2' fontSize='sm'>
-                                            {item.condition}
-                                        </Text>
-                                    </Box>
-                                    <Box>
-                                        <Heading size='xs' textTransform='uppercase'>
-                                            Description
-                                        </Heading>
-                                        <Text pt='2' fontSize='sm'>
-                                            {item.description}
-                                        </Text>
-                                    </Box>
-                                    <Box>
-                                        <Heading size='sm' textTransform='uppercase'>
-                                            Price
-                                        </Heading>
-                                        <Text pt='2' fontSize='md'>
-                                            ${item.price}
-                                        </Text>
-                                    </Box>
-                                </Stack>
-                            </CardBody>
-                            <CardFooter>
-                                <Button onClick={onOpen}>See Comments</Button>
-                                <Modal isOpen={isOpen} onClose={onClose}>
-                                    <ModalOverlay />
-                                    <ModalContent>
-                                        <ModalHeader>Comments</ModalHeader>
-                                        <ModalCloseButton />
-                                        <ModalBody>
-                                            <VStack alignItems='flex-start'>
-                                                {
-                                                    item.comments.map((comment: Comment, index: number) => (
-                                                        <CommentFormat comment={comment} key={index} />
-                                                    ))
-                                                }
-                                            </VStack>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <CommentButton id={item.listingID}/>
-                                        </ModalFooter>
-                                    </ModalContent>
-                                </Modal>
-                            </CardFooter>
-                        </Card>
-                    </HStack>
-                </VStack>
-            </PageContainer>
-        </Layout>
-    );
+                    </VStack>
+                </PageContainer>
+            </Layout>
+        );
+    }
+    else {
+        return <Loading />
+    }
 }
 
 export default Listings;

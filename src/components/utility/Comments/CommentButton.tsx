@@ -2,8 +2,8 @@ import { Button, HStack, Input, useToast } from '@chakra-ui/react'
 import React, { MouseEvent, useState } from "react";
 import useAuth from '../../../hooks/useAuth';
 import { SupabaseComment } from '../../../hooks/types'
-import useBuy from '../../../hooks/useBuy';
 import { v4 as uuidv4 } from 'uuid';
+import useComments from '../../../hooks/useComments';
 
 interface Props {
     id: string
@@ -12,7 +12,7 @@ interface Props {
 const CommentButton: React.FC<Props> = ({ id }) => {
     const { auth, createUser } = useAuth();
     const [ text, setText ] = useState<string>('');
-    const { addComment } = useBuy();
+    const { addComment } = useComments();
     const toast = useToast();
 
 
@@ -29,7 +29,7 @@ const CommentButton: React.FC<Props> = ({ id }) => {
                     id: uuidv4(),
                     post_id: id,
                     poster_id: response.id,
-                    body: text,
+                    comment_body: text,
                     likes: 0
                 }
                 console.log(commentUpload)

@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/clientApp';
 import defaultData from "../components/utility/data/defaultFirebaseUser";
-import { FirebaseUser, Comment } from "./types";
+import { FirebaseUser } from "./types";
 
 const useSearch = () => {
 
@@ -31,29 +31,8 @@ const useSearch = () => {
         }
     }
 
-
-    const getCommentsByPostID = async(post_id: string): Promise<Comment[]> => {
-        const body = JSON.stringify({ id: post_id });
-
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/getCommentsByPostID`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: body
-        })
-        if (response.status === 200) {
-            const data = await response.json();
-            const commentData = data as Comment[];
-            return commentData;
-        }
-        else {
-            return [];
-        }
-    }
-
     return {
-        getFirebaseUserByID: getFirebaseUserByID
+        getFirebaseUserByID: getFirebaseUserByID,
     }
 }
 export default useSearch

@@ -8,7 +8,7 @@ import ForSale from './ForSale'
 import PastSales from './PastSales'
 import useAuth from '../../hooks/useAuth'
 import { FirebaseUser } from '../../hooks/types'
-import defaultData from '../utility/data/defaultUserData'
+import defaultData from '../utility/data/defaultFirebaseUser'
 
 const Sell: React.FC = () => {
   const [userData, setUserData] = useState<FirebaseUser>(defaultData)

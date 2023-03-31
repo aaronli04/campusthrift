@@ -24,7 +24,6 @@ const Listings: React.FC<Props> = ({ listings }) => {
 
     const options = [
         "Default",
-        "Trending",
         "Low Price",
         "High Price"
     ]
@@ -46,7 +45,6 @@ const Listings: React.FC<Props> = ({ listings }) => {
                         <MenuItem onClick={() => setSort(0)}>{options[0]}</MenuItem>
                         <MenuItem onClick={() => setSort(1)}>{options[1]}</MenuItem>
                         <MenuItem onClick={() => setSort(2)}>{options[2]}</MenuItem>
-                        <MenuItem onClick={() => setSort(3)}>{options[3]}</MenuItem>
                     </MenuList>
                 </Menu>
             </HStack>

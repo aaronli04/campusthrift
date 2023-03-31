@@ -23,7 +23,7 @@ const Listing: React.FC<Props> = ({ listing }) => {
         >
             <Link href={`/listings/${listing.listingID}`}>
                 <Image
-                        src={listing.imageURLList[0]}
+                        src={listing.photo}
                         roundedTop='md'
                         alt={listing.title}
                         w='100%'

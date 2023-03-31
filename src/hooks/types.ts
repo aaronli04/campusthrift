@@ -2,30 +2,23 @@ import internal from "stream";
 
 export interface Item {
     title: string;
-    seller: UserData;
+    seller: FirebaseUser;
     listingID: string;
-    transactionID: string | null;
     condition: string;
     description: string;
     category: string;
-    size: string;
-    quantityLeft: string;
-    price: string;
-    delivery: string;
-    returns: string;
+    price: number;
     datePosted: string;
-    dateSold: string;
-    imageURLList: string[];
+    photo: string;
     comments: Comment[];
-    views: number;
 }
 
 export interface Comment {
-    poster: UserData;
+    poster: FirebaseUser;
     datePosted: string;
     commentBody: string;
-    likes: string;
-    dislikes: string;
+    likes: number;
+    dislikes: number;
 }
 
 export interface UserData {

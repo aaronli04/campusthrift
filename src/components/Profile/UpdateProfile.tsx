@@ -17,7 +17,7 @@ import {
   Field,
   Formik
 } from 'formik';
-import defaultData from '../utility/data/defaultUserData';
+import defaultData from '../utility/data/defaultFirebaseUser';
 
 const UpdateProfile: React.FC = () => {
   const universities = schools;

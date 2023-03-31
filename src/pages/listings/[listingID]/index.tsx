@@ -3,7 +3,7 @@ import {
     GetStaticProps,
     InferGetStaticPropsType
 } from "next";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     HStack,
     Text,
@@ -27,18 +27,42 @@ import {
     ModalBody,
     ModalFooter
 } from '@chakra-ui/react'
-import currentListings from "../../../components/utility/data/listingsData/currentListings";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
 import CommentFormat from "../../../components/utility/Comments/CommentFormat"
-import { Comment } from "../../../hooks/types";
+import { Comment, Item } from "../../../hooks/types";
 import CommentButton from "../../../components/utility/Comments/CommentButton";
 
-
 export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = currentListings.map((listing) => ({
+    let items:Item[] = []
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    if (response.status === 200) { 
+        const data = await response.json();
+        for (let i = 0; i < data.length; ++i) {
+            const item: Item = {
+                title: data[i].name,
+                seller: data[i].seller_id,
+                listingID: data[i].id,
+                condition: data[i].condition,
+                description: data[i].description,
+                category: data[i].category_name,
+                price: data[i].price,
+                datePosted: data[i].created_at,
+                photo: data[i].photo,
+                comments: [],
+            }
+            items.push(item);
+        }
+    }
+
+    const paths = items.map((listing) => ({
         params: { listingID: listing.listingID }
     }))
 
@@ -46,21 +70,38 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+    let items:Item[] = []
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    if (response.status === 200) { 
+        const data = await response.json();
+        for (let i = 0; i < data.length; ++i) {
+            const item: Item = {
+                title: data[i].name,
+                seller: data[i].seller_id,
+                listingID: data[i].id,
+                condition: data[i].condition,
+                description: data[i].description,
+                category: data[i].category_name,
+                price: data[i].price,
+                datePosted: data[i].created_at,
+                photo: data[i].photo,
+                comments: [],
+            }
+            items.push(item);
+        }
+    }
     const listingID = params?.listingID
-    const item = currentListings.find((data) => data.listingID === listingID)
+    const item = items.find((data) => data.listingID === listingID)
 
     return { props: { item } }
 }
 
 const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const [currentImageIndex, setCurrentImageIndex] = React.useState<number>(0);
-
-    const handleImageLeft = (e: React.MouseEvent<HTMLButtonElement>) => {
-        currentImageIndex === 0 ? setCurrentImageIndex(item.imageURLList.length - 1) : setCurrentImageIndex(currentImageIndex - 1)
-    }
-    const handleImageRight = (e: React.MouseEvent<HTMLButtonElement>) => {
-        item.imageURLList.length - 1 > currentImageIndex ? setCurrentImageIndex(currentImageIndex + 1) : setCurrentImageIndex(0)
-    }
     const { isOpen, onOpen, onClose } = useDisclosure()
 
 
@@ -79,13 +120,7 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                     <VStack left={30}>
                         <HStack spacing={30}>
                             <HStack>
-                                <Button bg='transparent' variant='link' onClick={handleImageLeft}>
-                                    <ChevronLeftIcon boxSize={30} bg='transparent' />
-                                </Button>
-                                <Image alt='item' padding={50} src={item.imageURLList[currentImageIndex]} w={imageWidth} h={imageHeight} />
-                                <Button bg='transparent' variant='link' onClick={handleImageRight}>
-                                    <ChevronRightIcon boxSize={30} bg='transparent' />
-                                </Button>
+                                <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
                             </HStack>
                             <Card w={400}>
                                 <CardHeader>
@@ -161,13 +196,7 @@ const Listings = ({ item }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <VStack left={30}>
                     <HStack spacing={30}>
                         <HStack>
-                            <Button bg='transparent' variant='link' onClick={handleImageLeft}>
-                                <ChevronLeftIcon boxSize={30} bg='transparent' />
-                            </Button>
-                            <Image alt='item' padding={50} src={item.imageURLList[currentImageIndex]} w={imageWidth} h={imageHeight} />
-                            <Button bg='transparent' variant='link' onClick={handleImageRight}>
-                                <ChevronRightIcon boxSize={30} bg='transparent' />
-                            </Button>
+                            <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
                         </HStack>
                         <Card w={400}>
                             <CardHeader>

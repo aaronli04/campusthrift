@@ -7,7 +7,6 @@ import {
     TabPanel
 } from '@chakra-ui/react'
 import Purchases from './Purchases'
-import users from '../utility/data/users/userData'
 import UpdateProfile from './UpdateProfile'
 import SignOut from './SignOut'
 import useDeviceSize from '../../hooks/useDeviceSize'
@@ -22,7 +21,7 @@ const Profile: React.FC = () => {
             </TabList>
             <TabPanels>
                 <TabPanel>
-                    <Purchases user={users[0]} />
+                    {/* <Purchases user={users[0]} /> */}
                 </TabPanel>
                 <TabPanel>
                     <UpdateProfile />

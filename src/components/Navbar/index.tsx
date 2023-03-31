@@ -7,7 +7,6 @@ import {
     Link,
     Image,
     HStack,
-    Text
 } from '@chakra-ui/react'
 
 import NavItem from './NavItem';

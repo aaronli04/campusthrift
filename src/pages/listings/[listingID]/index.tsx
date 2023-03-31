@@ -1,5 +1,11 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import React, { useEffect, useState } from 'react'
+import {
+    GetServerSidePropsContext,
+    InferGetServerSidePropsType
+} from "next";
+import React, {
+    useEffect,
+    useState
+} from 'react'
 import {
     HStack,
     Text,
@@ -31,7 +37,6 @@ import CommentButton from "../../../components/utility/Comments/CommentButton";
 import CommentFormat from "../../../components/utility/Comments/CommentFormat";
 import Loading from "../../../components/Loading";
 import useComments from "../../../hooks/useComments";
-import { useRouter } from "next/router";
 
 export const getServerSideProps = async ({ params }: GetServerSidePropsContext<{ listingID: string }>) => {
     const listingID = params?.listingID;
@@ -60,19 +65,14 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
     const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false);
     useEffect(() => {
         async function fetchData() {
-            const comments = await getCommentsByPostID(item.listingID);
+            const comments = await getCommentsByPostID(item.id);
             setComments(comments)
             setCommentsLoaded(true)
         }
         fetchData();
-    }, [item.listingID]);
+    }, [item.id]);
     const imageWidth = 600
     const imageHeight = 800
-    const router = useRouter();
-    
-    if (router.isFallback) {
-      return <div>Loading...</div>;
-    }
 
     if (comments.length == 0 && commentsLoaded) {
         return (
@@ -138,7 +138,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                                 </Text>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <CommentButton id={item.listingID} />
+                                                <CommentButton id={item.id} />
                                             </ModalFooter>
                                         </ModalContent>
                                     </Modal>
@@ -219,7 +219,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                                 </VStack>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <CommentButton id={item.listingID} />
+                                                <CommentButton id={item.id} />
                                             </ModalFooter>
                                         </ModalContent>
                                     </Modal>

@@ -21,8 +21,7 @@ const useComments = () => {
         }
     }
 
-    const addComment = async (comment: SupabaseComment, t: any) => {
-        const token = await Promise.resolve(t);
+    const addComment = async (comment: SupabaseComment, token: string) => {
         if (token === '') return;
         const body = JSON.stringify({
             id: comment.id,

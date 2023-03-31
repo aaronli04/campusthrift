@@ -16,7 +16,6 @@ import {
 
 import { FirebaseUser, UserData } from './types'
 import { doc, DocumentReference, getDoc, setDoc } from 'firebase/firestore'
-import { useEffect, useState } from 'react';
 
 
 const useAuth = () => {

@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { FirebaseUser, SupabaseComment } from '../../../hooks/types'
+import React, {
+  useEffect,
+  useState
+} from 'react'
+import {
+  FirebaseUser,
+  SupabaseComment
+} from '../../../hooks/types'
 import {
   Avatar,
   HStack,
@@ -7,7 +13,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import { 
+import {
   ChevronDownIcon,
   ChevronUpIcon
 } from '@chakra-ui/icons'
@@ -20,7 +26,7 @@ interface Props {
 
 const CommentFormat: React.FC<Props> = ({ comment }) => {
   const { getFirebaseUserByID } = useSearch();
-  const [ user, setUser ] = useState<FirebaseUser>(defaultData);
+  const [user, setUser] = useState<FirebaseUser>(defaultData);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,9 +42,9 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
       <VStack alignItems='flex-start' spacing={0}>
         <Text>{comment.comment_body}</Text>
         <HStack spacing={0}>
-          <IconButton aria-label='Likes' icon={<ChevronUpIcon/>} variant='unstyled' />
+          <IconButton aria-label='Likes' icon={<ChevronUpIcon />} variant='unstyled' />
           <Text>{comment.likes}</Text>
-          <IconButton aria-label='Dislikes' icon={<ChevronDownIcon/>} variant='unstyled'/>
+          <IconButton aria-label='Dislikes' icon={<ChevronDownIcon />} variant='unstyled' />
         </HStack>
       </VStack>
     </HStack>

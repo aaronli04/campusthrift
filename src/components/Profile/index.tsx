@@ -6,7 +6,6 @@ import {
     TabPanels,
     TabPanel
 } from '@chakra-ui/react'
-import Purchases from './Purchases'
 import UpdateProfile from './UpdateProfile'
 import SignOut from './SignOut'
 import useDeviceSize from '../../hooks/useDeviceSize'

@@ -4,8 +4,7 @@ import { FirebaseUser } from './types';
 
 
 // Converts a document from Firebase into a UserData object
-const setUserData = async (userData: FirebaseUser, t: any) => {
-  const token = await Promise.resolve(t);
+const setUserData = async (userData: FirebaseUser, token: string) => {
   if (token === '') return;
   const uploadData = {
     email: userData.email,
@@ -16,10 +15,6 @@ const setUserData = async (userData: FirebaseUser, t: any) => {
     type: userData.type,
     phone: userData.phone
   };
-
-  if (!token) {
-    return;
-  }
 
   const body = JSON.stringify({ id: userData.id, school: userData.school });
   fetch(`${process.env.NEXT_PUBLIC_BACKEND}/updateUser`, {

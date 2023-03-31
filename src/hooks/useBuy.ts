@@ -5,8 +5,7 @@ const useBuy = () => {
 
     const { getFirebaseUserByID } = useSearch();
 
-    const addListing = async (productData: Product, t: any) => {
-        const token = await Promise.resolve(t);
+    const addListing = async (productData: Product, token: string) => {
         if (token === '') return;
         const uploadData = {
             id: productData.id,
@@ -18,10 +17,6 @@ const useBuy = () => {
             category_name: productData.category_name,
             photo: productData.photo
         };
-
-        if (!token) {
-            return;
-        }
 
         const body = JSON.stringify({
             id: productData.id,

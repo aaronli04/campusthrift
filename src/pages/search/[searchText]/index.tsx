@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, {
+    useEffect,
+    useState
+} from 'react'
 import {
     Text
 } from '@chakra-ui/react'
@@ -25,7 +28,7 @@ const SearchResults = () => {
         }
         fetchData();
     }, []);
-    
+
     useEffect(() => {
         if (pageURL.length !== 0) {
             const filteredItems = items.filter(listing => listing.title.replace(/ /g, '').toLowerCase().includes(pageURL.toLowerCase()));
@@ -63,11 +66,11 @@ const SearchResults = () => {
             </Layout>
         )
     }
-     else {
+    else {
         return (
             <Loading />
         )
-     }
+    }
 }
 
 

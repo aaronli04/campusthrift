@@ -8,7 +8,10 @@ import {
   Text,
   Input
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react'
+import React, {
+  useEffect,
+  useState
+} from 'react'
 import setUserData from '../../hooks/setUserData';
 import { FirebaseUser } from '../../hooks/types'
 import useAuth from '../../hooks/useAuth';
@@ -25,8 +28,16 @@ const UpdateProfile: React.FC = () => {
   const toast = useToast()
   const [existingData, setExistingData] = useState<FirebaseUser>(defaultData);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [token, setToken] = useState<string>('')
 
   useEffect(() => {
+    async function getIDToken() {
+      if (auth) {
+        const token = await auth.getIdToken()
+        setToken(token)
+      }
+    }
+    getIDToken();
     if (auth) {
       createUser(auth).then(response => {
         if (response !== null) {
@@ -37,8 +48,6 @@ const UpdateProfile: React.FC = () => {
   }, [])
 
   const handleOnSubmit = (school: string, username: string, phoneNumber: string) => {
-    if (!auth) return;
-    const token = auth.getIdToken();
     if (phoneNumber.length != 10) {
       toast({
         title: `Input a valid phone number.`,

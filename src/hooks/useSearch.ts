@@ -1,11 +1,14 @@
-import { doc, getDoc } from 'firebase/firestore';
+import {
+    doc,
+    getDoc
+} from 'firebase/firestore';
 import { db } from '../firebase/clientApp';
 import defaultData from "../components/utility/data/defaultFirebaseUser";
 import { FirebaseUser } from "./types";
 
 const useSearch = () => {
 
-    const getFirebaseUserByID = async(user_id: string): Promise<FirebaseUser> => {
+    const getFirebaseUserByID = async (user_id: string): Promise<FirebaseUser> => {
         const userDoc = await getDoc(doc(db, 'users', user_id));
 
         // If the user exists in the database, return the user data

@@ -1,7 +1,5 @@
 import React from 'react'
 import {
-    HStack,
-    Link,
     Text,
     VStack
 } from '@chakra-ui/react'

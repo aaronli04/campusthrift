@@ -4,6 +4,7 @@ export interface Item {
     title: string;
     seller: FirebaseUser;
     listingID: string;
+    transaction_id: string,
     condition: string;
     description: string;
     category: string;
@@ -28,7 +29,6 @@ export interface UserData {
     school: string;
     listingsPosted: Item[];
     listingsSold: Item[];
-    listingsPurchased: Item[];
     type: "user" | "administrator";
 }
 
@@ -45,6 +45,7 @@ export interface FirebaseUser {
 export interface Product {
     id: string;
     seller_id: string;
+    transaction_id: string | null,
     name: string;
     description: string;
     condition: string;
@@ -54,9 +55,9 @@ export interface Product {
 }
 
 export interface SupabaseComment {
-    id: string,
-    post_id: string,
-    poster_id: string,
-    comment_body: string,
-    likes: number,
+    id: string;
+    post_id: string;
+    poster_id: string;
+    comment_body: string;
+    likes: number;
 }

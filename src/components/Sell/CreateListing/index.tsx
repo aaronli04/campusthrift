@@ -60,6 +60,7 @@ const CreateListing: React.FC = () => {
           let data: Product = {
             id: uuidv4(),
             seller_id: response.id,
+            transaction_id: null,
             name: name,
             description: description,
             condition: condition,

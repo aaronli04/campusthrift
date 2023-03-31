@@ -55,6 +55,7 @@ const useBuy = () => {
                     title: data[i].name,
                     seller: (await getFirebaseUserByID(data[i].seller_id)),
                     listingID: data[i].id,
+                    transaction_id: data[i].transaction_id,
                     condition: data[i].condition,
                     description: data[i].description,
                     category: data[i].category_name,

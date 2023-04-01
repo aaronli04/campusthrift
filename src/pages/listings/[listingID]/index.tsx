@@ -32,11 +32,17 @@ import {
 import PageContainer from "../../../components/utility/PageContainer";
 import Head from "next/head";
 import Layout from "../../../layouts/Layout";
-import { Product, SupabaseComment } from "../../../hooks/types";
+import {
+    Product,
+    SupabaseComment,
+    FirebaseUser
+} from "../../../hooks/types";
 import CommentButton from "../../../components/utility/Comments/CommentButton";
 import CommentFormat from "../../../components/utility/Comments/CommentFormat";
 import Loading from "../../../components/Loading";
 import useComments from "../../../hooks/useComments";
+import useSearch from "../../../hooks/useSearch"
+import defaultData from "../../../components/utility/data/defaultFirebaseUser";
 
 export const getServerSideProps = async ({ params }: GetServerSidePropsContext<{ listingID: string }>) => {
     const listingID = params?.listingID;
@@ -63,9 +69,13 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
     const { getCommentsByPostID } = useComments()
     const [comments, setComments] = useState<SupabaseComment[]>([]);
     const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false);
+    const { getFirebaseUserByID } = useSearch()
+    const [userData, setUserData] = useState<FirebaseUser>(defaultData);
     useEffect(() => {
         async function fetchData() {
             const comments = await getCommentsByPostID(item.id);
+            const userData: FirebaseUser = await getFirebaseUserByID(item.seller_id);
+            setUserData(userData)
             setComments(comments)
             setCommentsLoaded(true)
         }
@@ -89,16 +99,24 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
                             </HStack>
                             <Card w={400}>
-                                <CardHeader>
-                                    <Heading size='md'>Item Details</Heading>
-                                </CardHeader>
                                 <CardBody>
-                                    <Stack divider={<StackDivider />} spacing='4'>
+                                    <Stack divider={<StackDivider />} spacing={4}>
                                         <Box>
-                                            <Heading size='sm' textTransform='uppercase'>
-                                                {item.title}
+                                            <Heading size='md'>
+                                                {item.name}
                                             </Heading>
                                         </Box>
+                                        <VStack gap={0} spacing={0} alignItems='flex-start'>
+                                            <Heading size='xs' textTransform='uppercase'>
+                                                Seller
+                                            </Heading>
+                                            <Text pt='2' fontSize='sm'>
+                                                {userData.username} from {userData.school}
+                                            </Text>
+                                            <Text pt='2' fontSize='sm'>
+                                                Contact {userData.email} if interested
+                                            </Text>
+                                        </VStack>
                                         <Box>
                                             <Heading size='xs' textTransform='uppercase'>
                                                 Condition
@@ -116,10 +134,10 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                             </Text>
                                         </Box>
                                         <Box>
-                                            <Heading size='sm' textTransform='uppercase'>
+                                            <Heading size='xs' textTransform='uppercase'>
                                                 Price
                                             </Heading>
-                                            <Text pt='2' fontSize='md'>
+                                            <Text pt='2' fontSize='sm'>
                                                 ${item.price}
                                             </Text>
                                         </Box>
@@ -166,16 +184,24 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <Image alt='item' padding={50} src={item.photo} w={imageWidth} h={imageHeight} />
                             </HStack>
                             <Card w={400}>
-                                <CardHeader>
-                                    <Heading size='md'>Item Details</Heading>
-                                </CardHeader>
                                 <CardBody>
-                                    <Stack divider={<StackDivider />} spacing='4'>
+                                    <Stack divider={<StackDivider />} spacing={4}>
                                         <Box>
-                                            <Heading size='sm' textTransform='uppercase'>
-                                                {item.title}
+                                            <Heading size='md'>
+                                                {item.name}
                                             </Heading>
                                         </Box>
+                                        <VStack gap={0} spacing={0} alignItems='flex-start'>
+                                            <Heading size='xs' textTransform='uppercase'>
+                                                Seller
+                                            </Heading>
+                                            <Text pt='2' fontSize='sm'>
+                                                {userData.username} from {userData.school}
+                                            </Text>
+                                            <Text pt='2' fontSize='sm'>
+                                                Contact {userData.email} if interested
+                                            </Text>
+                                        </VStack>
                                         <Box>
                                             <Heading size='xs' textTransform='uppercase'>
                                                 Condition
@@ -193,10 +219,10 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                             </Text>
                                         </Box>
                                         <Box>
-                                            <Heading size='sm' textTransform='uppercase'>
+                                            <Heading size='xs' textTransform='uppercase'>
                                                 Price
                                             </Heading>
-                                            <Text pt='2' fontSize='md'>
+                                            <Text pt='2' fontSize='sm'>
                                                 ${item.price}
                                             </Text>
                                         </Box>

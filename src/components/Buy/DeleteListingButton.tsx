@@ -1,5 +1,8 @@
 import React, {
-  MouseEvent
+  MouseEvent,
+  useRef,
+  useState,
+  useEffect
 } from 'react'
 import {
   AlertDialog,
@@ -12,13 +15,40 @@ import {
   useDisclosure,
   useToast
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { Product } from '../../hooks/types'
+import useAuth from '../../hooks/useAuth'
+import useBuy from '../../hooks/useBuy'
 
-const DeleteListingButton = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = React.useRef(null)
+interface Props {
+  item: Product
+}
 
-  const deleteListing = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(1)
+const DeleteListingButton:React.FC<Props> = ( { item } ) => {
+  const { auth } = useAuth();
+  const { deleteListing } = useBuy();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef(null);
+  const toast = useToast();
+  const router = useRouter();
+  const [token, setToken] = useState<string>('')
+
+  useEffect(() => {
+    async function getIDToken() {
+      if (auth) {
+        const token = await auth.getIdToken()
+        setToken(token)
+      }
+  }})
+
+  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    deleteListing(item, token)
+    toast({
+      title: `Success!`,
+      status: 'success',
+      isClosable: true,
+    })
+    router.push('/sell')
   }
 
   return (
@@ -46,7 +76,7 @@ const DeleteListingButton = () => {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={deleteListing} ml={3}>
+              <Button colorScheme='red' onClick={handleDelete} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

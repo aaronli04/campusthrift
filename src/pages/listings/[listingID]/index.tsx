@@ -76,10 +76,8 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
     const [userData, setUserData] = useState<FirebaseUser>();
     useEffect(() => {
         async function setUserID() {
-            console.log(auth)
             if (auth) {
                 const response = await createUser(auth);
-                console.log(response)
                 if (response !== null) {
                     setCurrentUserID(response.id)
                 }
@@ -171,7 +169,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <CardFooter>
                                     <HStack>
                                         <Button onClick={onOpen}>See Comments</Button>
-                                        <DeleteListingButton />
+                                        <DeleteListingButton item={item}/>
                                     </HStack>
                                     <Modal isOpen={isOpen} onClose={onClose}>
                                         <ModalOverlay />
@@ -260,7 +258,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <CardFooter>
                                     <HStack>
                                         <Button onClick={onOpen}>See Comments</Button>
-                                        <DeleteListingButton />
+                                        <DeleteListingButton item={item}/>
                                     </HStack>
                                     <Modal isOpen={isOpen} onClose={onClose}>
                                         <ModalOverlay />

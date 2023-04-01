@@ -10,12 +10,10 @@ import useAuth from '../../hooks/useAuth'
 import {
   FirebaseUser,
   Item,
-  UserData
 } from '../../hooks/types'
 import defaultData from '../utility/data/defaultFirebaseUser'
 import useSell from '../../hooks/useSell'
 import Loading from '../Loading'
-import { useRouter } from 'next/router'
 
 const Sell: React.FC = () => {
   const [userData, setUserData] = useState<FirebaseUser>(defaultData)
@@ -25,7 +23,6 @@ const Sell: React.FC = () => {
   const { getMyListings } = useSell();
   const [activeListings, setActiveListings] = useState<Item[]>([])
   const [listingsSold, setListingsSold] = useState<Item[]>([])
-  const [completeUserData, setCompleteUserData] = useState<UserData>()
 
   useEffect(() => {
     //get active and past listings of user
@@ -46,23 +43,7 @@ const Sell: React.FC = () => {
         }
         setActiveListings(activeListings)
         setListingsSold(listingsSold)
-        const completeUserData = await handleUserData(activeListings, listingsSold, userData)
-        setCompleteUserData(completeUserData)
       }
-    }
-    // build complete userData from FirebaseUser and Listings
-    async function handleUserData(activeListings: Item[], listingsSold: Item[], userData: FirebaseUser) {
-      const completeUserData: UserData = {
-        email: userData.email,
-        id: userData.id,
-        username: userData.username,
-        profilePicture: userData.profilePicture,
-        school: userData.school,
-        listingsPosted: activeListings,
-        listingsSold: listingsSold,
-        type: userData.type
-      }
-      return completeUserData
     }
     if (auth) {
       createUser(auth).then(response => {
@@ -72,19 +53,19 @@ const Sell: React.FC = () => {
       })
       fetchListings();
     }
-  }, [userListings])
+  }, [userData.id])
 
-  if (!completeUserData) {
+  if (!auth) {
     return <Loading />
   }
 
   return (
     <Flex direction="row" w="100%" gap={12} flex={1}>
       <VStack gap={5}>
-        <ProfileBar user={completeUserData} />
+        <ProfileBar user={userData} listingsSold={listingsSold}/>
         <VStack spacing={20}>
-          <ForSale user={completeUserData} />
-          <PastSales user={completeUserData} />
+          <ForSale user={userData} activeListings={activeListings}/>
+          <PastSales user={userData} listingsSold={listingsSold}/>
         </VStack>
       </VStack>
     </Flex>

@@ -6,14 +6,18 @@ import {
     VStack
 } from '@chakra-ui/react'
 import React from 'react'
-import { UserData } from '../../hooks/types'
+import {
+    FirebaseUser,
+    Item
+} from '../../hooks/types'
 import NewListingButton from './CreateListing/Button'
 
 interface Props {
-    user: UserData
+    user: FirebaseUser,
+    listingsSold: Item[]
 }
 
-const ProfileBar: React.FC<Props> = ({ user }) => {
+const ProfileBar: React.FC<Props> = ({ user, listingsSold }) => {
 
     return (
         <HStack justifyContent='space-between' alignItems='flex-start' gap={20}>
@@ -29,7 +33,7 @@ const ProfileBar: React.FC<Props> = ({ user }) => {
                 </VStack>
                 <Divider orientation='vertical' h={20} />
                 <Text>
-                    {user.listingsSold.length} listings sold
+                    {listingsSold.length} listings sold
                 </Text>
             </HStack>
             <NewListingButton />

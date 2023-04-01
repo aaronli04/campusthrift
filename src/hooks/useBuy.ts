@@ -40,6 +40,41 @@ const useBuy = () => {
             .then(response => console.log(response.json()))
     };
 
+    const deleteListing = async (productData: Product, token: string) => {
+        if (token === '') return;
+        const uploadData = {
+            id: productData.id,
+            seller_id: productData.seller_id,
+            name: productData.name,
+            description: productData.description,
+            condition: productData.condition,
+            price: productData.price,
+            category_name: productData.category_name,
+            photo: productData.photo
+        };
+
+        const body = JSON.stringify({
+            id: productData.id,
+            seller_id: productData.seller_id,
+            name: productData.name,
+            description: productData.description,
+            condition: productData.condition,
+            price: productData.price,
+            category_name: productData.category_name,
+            photo: productData.photo
+        });
+
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/deleteListing`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: body
+        })
+            .then(response => console.log(response.json()))
+    };
+
     const showAllListings = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/showAllListings`, {
             method: 'GET',
@@ -75,6 +110,7 @@ const useBuy = () => {
     return {
         showAllListings: showAllListings,
         addListing: addListing,
+        deleteListing: deleteListing
     }
 }
 export default useBuy

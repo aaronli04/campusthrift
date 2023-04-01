@@ -34,10 +34,11 @@ interface Props {
 const CommentFormat: React.FC<Props> = ({ comment }) => {
   const { auth, createUser } = useAuth();
   const { getFirebaseUserByID } = useSearch();
-  const { addVote } = useVotes();
+  const { addVote, updateVote, getVotesByIDs } = useVotes();
   const [ token, setToken ] = useState<string>('');
   const toast = useToast();
   const [user, setUser] = useState<FirebaseUser>(defaultData);
+  const [ votes, setVotes ] = useState<CommentVote[]>([]);
   const router = useRouter()
 
   useEffect(() => {
@@ -50,10 +51,23 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
     async function fetchData() {
       const user = await getFirebaseUserByID(comment.poster_id);
       setUser(user)
+      const votes = await getVotesByIDs(user.id, comment.id);
+      setVotes(votes)
     }
     getIDToken()
     fetchData();
   }, [])
+
+  const vote = (voteUpload: CommentVote, token: string) => {
+    // has not voted previously, addVote
+    if (votes.length === 0) {
+      addVote(voteUpload, token);
+    }
+    // has voted previosuly, updateVote
+    else {
+      updateVote(voteUpload, token);
+    }
+  }
 
   const handleUpvote = (e: MouseEvent<HTMLButtonElement>) => {
     if (!auth) return;
@@ -65,7 +79,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
           user_id: user.id,
           action: 'upvote'
         }
-        addVote(voteUpload, token)
+        vote(voteUpload, token)
         toast({
           title: `Success!`,
           status: 'success',
@@ -85,7 +99,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
           user_id: user.id,
           action: 'downvote'
         }
-        addVote(voteUpload, token)
+        vote(voteUpload, token)
         toast({
           title: `Success!`,
           status: 'success',

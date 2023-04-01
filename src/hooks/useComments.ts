@@ -1,4 +1,4 @@
-import { CommentVote, SupabaseComment } from "./types";
+import { SupabaseComment } from "./types";
 
 const useComments = () => {
 

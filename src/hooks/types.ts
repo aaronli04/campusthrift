@@ -61,3 +61,10 @@ export interface SupabaseComment {
     comment_body: string;
     likes: number;
 }
+
+export interface CommentVote {
+    id: string;
+    comment_id: string;
+    user_id: string;
+    action: string;
+}

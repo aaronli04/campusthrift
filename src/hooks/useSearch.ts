@@ -33,7 +33,7 @@ const useSearch = () => {
             return defaultData;
         }
     }
-
+    
     return {
         getFirebaseUserByID: getFirebaseUserByID,
     }

@@ -21,6 +21,7 @@ import {
   Formik
 } from 'formik';
 import defaultData from '../utility/data/defaultFirebaseUser';
+import SignOut from './SignOut';
 
 const UpdateProfile: React.FC = () => {
   const universities = schools;
@@ -99,8 +100,8 @@ const UpdateProfile: React.FC = () => {
   };
 
   return (
-    <Flex align="center" justify="center">
-      <Box bg="white" rounded="md" w={64}>
+    <VStack align="center" justify="center">
+      <Box bg="white" rounded="md" w={64} gap={5}>
         <Formik
           initialValues={{
             college: existingData.school,
@@ -181,7 +182,8 @@ const UpdateProfile: React.FC = () => {
           )}
         </Formik>
       </Box>
-    </Flex>
+      <SignOut />
+    </VStack>
   );
 }
 

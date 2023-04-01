@@ -26,7 +26,7 @@ const ForSale: React.FC<Props> = ({ user, activeListings }) => {
                 >
                     For Sale
                 </Text>
-                <SimpleGrid columns={4} spacing={5}>
+                <SimpleGrid columns={3} spacing={5}>
                     {
                         activeListings.map((listing, index) => (
                             <Listing

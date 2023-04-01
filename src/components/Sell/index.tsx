@@ -53,7 +53,7 @@ const Sell: React.FC = () => {
       })
       fetchListings();
     }
-  }, [userData.id])
+  }, [auth, userData.id])
 
   if (!auth) {
     return <Loading />

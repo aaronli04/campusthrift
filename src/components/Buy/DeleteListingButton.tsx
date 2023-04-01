@@ -19,12 +19,13 @@ import { useRouter } from 'next/router'
 import { Product } from '../../hooks/types'
 import useAuth from '../../hooks/useAuth'
 import useBuy from '../../hooks/useBuy'
+import { getIdToken } from 'firebase/auth'
 
 interface Props {
   item: Product
 }
 
-const DeleteListingButton:React.FC<Props> = ( { item } ) => {
+const DeleteListingButton: React.FC<Props> = ({ item }) => {
   const { auth } = useAuth();
   const { deleteListing } = useBuy();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,9 +40,12 @@ const DeleteListingButton:React.FC<Props> = ( { item } ) => {
         const token = await auth.getIdToken()
         setToken(token)
       }
-  }})
+    }
+    getIDToken();
+  })
 
   const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    console.log(token)
     deleteListing(item, token)
     toast({
       title: `Success!`,

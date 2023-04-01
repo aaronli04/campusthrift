@@ -34,11 +34,12 @@ interface Props {
 const CommentFormat: React.FC<Props> = ({ comment }) => {
   const { auth, createUser } = useAuth();
   const { getFirebaseUserByID } = useSearch();
-  const { addVote, updateVote, getVotesByIDs } = useVotes();
+  const { addVote, updateVote, getVotesByIDs, getLikesByCommentID } = useVotes();
   const [ token, setToken ] = useState<string>('');
   const toast = useToast();
   const [user, setUser] = useState<FirebaseUser>(defaultData);
   const [ votes, setVotes ] = useState<CommentVote[]>([]);
+  const [ likes, setLikes ] = useState<number>(0);
   const router = useRouter()
 
   useEffect(() => {
@@ -53,6 +54,8 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
       setUser(user)
       const votes = await getVotesByIDs(user.id, comment.id);
       setVotes(votes)
+      const likes = await getLikesByCommentID(comment.id);
+      setLikes(likes)
     }
     getIDToken()
     fetchData();
@@ -67,6 +70,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
     else {
       updateVote(voteUpload, token);
     }
+    router.reload()
   }
 
   const handleUpvote = (e: MouseEvent<HTMLButtonElement>) => {
@@ -116,7 +120,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
         <Text>{comment.comment_body}</Text>
         <HStack spacing={0}>
           <IconButton aria-label='Likes' icon={<ChevronUpIcon />} variant='unstyled' onClick={handleUpvote}/>
-          <Text>{comment.likes}</Text>
+          <Text>{likes}</Text>
           <IconButton aria-label='Dislikes' icon={<ChevronDownIcon />} variant='unstyled' onClick={handleDownvote}/>
         </HStack>
       </VStack>

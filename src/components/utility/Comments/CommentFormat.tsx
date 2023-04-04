@@ -38,6 +38,7 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
   const [ token, setToken ] = useState<string>('');
   const toast = useToast();
   const [user, setUser] = useState<FirebaseUser>(defaultData);
+  const [currentUserID, setCurrentUserID] = useState<string>('');
   const [ votes, setVotes ] = useState<CommentVote[]>([]);
   const [ likes, setLikes ] = useState<number>(0);
   const router = useRouter()
@@ -49,15 +50,25 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
         setToken(token)
       }
     }
+    async function getCurrentUserInfo() {
+      if (!auth) return;
+      createUser(auth).then(response => {
+        if (response !== null) {
+          setCurrentUserID(response.id)
+        }
+      }
+      )
+    }
     async function fetchData() {
       const user = await getFirebaseUserByID(comment.poster_id);
       setUser(user)
-      const votes = await getVotesByIDs(user.id, comment.id);
+      const votes = await getVotesByIDs(currentUserID, comment.id);
       setVotes(votes)
       const likes = await getLikesByCommentID(comment.id);
       setLikes(likes)
     }
     getIDToken()
+    getCurrentUserInfo()
     fetchData();
   }, [])
 
@@ -66,11 +77,11 @@ const CommentFormat: React.FC<Props> = ({ comment }) => {
     if (votes.length === 0) {
       addVote(voteUpload, token);
     }
-    // has voted previosuly, updateVote
+    // has voted previously, updateVote
     else {
       updateVote(voteUpload, token);
     }
-    router.reload()
+    // router.reload()
   }
 
   const handleUpvote = (e: MouseEvent<HTMLButtonElement>) => {

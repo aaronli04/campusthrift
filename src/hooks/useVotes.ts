@@ -4,7 +4,6 @@ const useVotes = () => {
 
     const addVote = async (vote: CommentVote, token: string) => {
         if (token === '') return;
-        console.log(vote)
         const body = JSON.stringify({
             id: vote.id,
             comment_id: vote.comment_id,

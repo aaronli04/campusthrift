@@ -72,7 +72,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
     const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false);
     const { getFirebaseUserByID } = useSearch()
     const [currentUserID, setCurrentUserID] = useState<string>();
-    const [ userLoaded, setUserLoaded ] = useState<boolean>(false);
+    const [userLoaded, setUserLoaded] = useState<boolean>(false);
     const [userData, setUserData] = useState<FirebaseUser>();
     useEffect(() => {
         async function setUserID() {
@@ -169,7 +169,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <CardFooter>
                                     <HStack>
                                         <Button onClick={onOpen}>See Comments</Button>
-                                        <DeleteListingButton item={item}/>
+                                        <DeleteListingButton item={item} />
                                     </HStack>
                                     <Modal isOpen={isOpen} onClose={onClose}>
                                         <ModalOverlay />
@@ -258,7 +258,7 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                 <CardFooter>
                                     <HStack>
                                         <Button onClick={onOpen}>See Comments</Button>
-                                        <DeleteListingButton item={item}/>
+                                        <DeleteListingButton item={item} />
                                     </HStack>
                                     <Modal isOpen={isOpen} onClose={onClose}>
                                         <ModalOverlay />
@@ -266,9 +266,13 @@ const Listings = ({ item }: InferGetServerSidePropsType<typeof getServerSideProp
                                             <ModalHeader>Comments</ModalHeader>
                                             <ModalCloseButton />
                                             <ModalBody>
-                                                <Text>
-                                                    No comments yet!
-                                                </Text>
+                                                <VStack alignItems='flex-start'>
+                                                    {
+                                                        comments.map((comment: SupabaseComment, index: number) => (
+                                                            <CommentFormat comment={comment} key={index} />
+                                                        ))
+                                                    }
+                                                </VStack>
                                             </ModalBody>
                                             <ModalFooter>
                                                 <CommentButton id={item.id} />
